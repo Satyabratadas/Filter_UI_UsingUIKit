@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
     
     
+    @IBOutlet weak var clearAllBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
     @IBOutlet weak var filtersTableView: UITableView!
     @IBOutlet weak var applyBtn: UIButton!
@@ -18,13 +19,17 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.applyBtn.layer.cornerRadius = 5
+//        self.bottomView.layer.borderWidth = 1
+//        self.bottomView.layer.borderColor = UIColor.lightGray.cgColor
         self.filtersTableView.delegate = self
         self.filtersTableView.dataSource = self
         self.filtersTableView.register(UINib(nibName: "TableViewCell", bundle: nil), forCellReuseIdentifier: identifiewrForCell)
         self.filtersTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
     }
 
+    @IBAction func clearallFilterBtn(_ sender: UIButton) {
+        print("Clear all Pressed")
+    }
     @IBAction func cancelBtn(_ sender: UIButton) {
         print("Cancel Pressed")
     }
