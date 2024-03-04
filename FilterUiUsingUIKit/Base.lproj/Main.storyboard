@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="32"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILTERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Do-uV-SPY">
-                                        <rect key="frame" x="20.999999999999996" y="0.0" width="62.666666666666657" height="32"/>
+                                        <rect key="frame" x="24.999999999999996" y="0.0" width="62.666666666666657" height="32"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                                     <constraint firstAttribute="bottom" secondItem="N0m-R3-zMI" secondAttribute="bottom" constant="8" id="8uO-8h-MUx"/>
                                     <constraint firstAttribute="trailing" secondItem="N0m-R3-zMI" secondAttribute="trailing" constant="26" id="E6P-f3-smb"/>
                                     <constraint firstItem="N0m-R3-zMI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Do-uV-SPY" secondAttribute="trailing" constant="163" id="Gtt-Fg-MTh"/>
-                                    <constraint firstItem="2Do-uV-SPY" firstAttribute="leading" secondItem="hR7-y6-nKu" secondAttribute="leading" constant="21" id="WwF-u6-hDL"/>
+                                    <constraint firstItem="2Do-uV-SPY" firstAttribute="leading" secondItem="hR7-y6-nKu" secondAttribute="leading" constant="25" id="WwF-u6-hDL"/>
                                     <constraint firstAttribute="bottom" secondItem="2Do-uV-SPY" secondAttribute="bottom" id="XeJ-yz-XnG"/>
                                     <constraint firstAttribute="height" constant="32" id="Zgu-zg-R59"/>
                                     <constraint firstItem="2Do-uV-SPY" firstAttribute="top" secondItem="hR7-y6-nKu" secondAttribute="top" id="myL-A1-f4y"/>
