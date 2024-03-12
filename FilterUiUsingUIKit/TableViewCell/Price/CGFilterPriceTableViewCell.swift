@@ -1,9 +1,8 @@
 //
 //  CGFilterPriceTableViewCell.swift
-//  PrintApp
+//  Price
 //
-//  Created by Jai Ram Babu on 27/04/23.
-//  Copyright © 2023 ARC Document Solutions. All rights reserved.
+//  Created by Satyabrata Das on 01/03/24.
 //
 
 import UIKit
@@ -31,6 +30,9 @@ protocol CGFilterPriceTableViewCellDelegate : NSObjectProtocol {
 
 class CGFilterPriceTableViewCell: UITableViewCell  {
 
+    @IBOutlet weak var minimumPriceView: UIView!
+    @IBOutlet weak var maximumPriceView: UIView!
+    @IBOutlet weak var sliderCellHeader: UILabel!
     @IBOutlet  weak var rangeSliderCurrency      : RangeSeekSlider!
     @IBOutlet  weak var txtMinPrice              : UITextField!
     @IBOutlet  weak var txtMaxPrice              : UITextField!
@@ -46,7 +48,10 @@ class CGFilterPriceTableViewCell: UITableViewCell  {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        self.minimumPriceView.layer.borderWidth = 1
+        self.minimumPriceView.layer.borderColor = UIColor.lightGray.cgColor
+        self.maximumPriceView.layer.borderWidth = 1
+        self.maximumPriceView.layer.borderColor = UIColor.lightGray.cgColor
         self.setupSilder()
         
     }

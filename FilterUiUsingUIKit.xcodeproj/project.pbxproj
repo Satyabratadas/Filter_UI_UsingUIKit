@@ -115,9 +115,9 @@
 			children = (
 				0B9B03D02BA092B40017195D /* Price */,
 				A39B74782B964FB8008A78B6 /* TableViewCellForTapableSection.swift */,
-				A39B74762B964FAF008A78B6 /* TableViewCellForTapableSection.xib */,
 				A39B74742B964FA0008A78B6 /* TableViewCellForSlider.swift */,
 				A39B74722B964F97008A78B6 /* TableViewCellForSlider.xib */,
+				A39B74762B964FAF008A78B6 /* TableViewCellForTapableSection.xib */,
 				A33EF98E2B827C71003EFB6F /* TableViewCell.xib */,
 				A33EF9902B827C7B003EFB6F /* TableViewCell.swift */,
 			);

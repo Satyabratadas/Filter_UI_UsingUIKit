@@ -2,13 +2,12 @@
 //  RangeSeekSliderDelegate.swift
 //  RangeSeekSlider
 //
-//  Created by Jai Ram Babu on 2023/09/05.
-//
+//  Created by Satyabrata Das on 01/03/24.
 //
 
 import CoreGraphics
 
-public protocol RangeSeekSliderDelegate: class {
+public protocol RangeSeekSliderDelegate: AnyObject {
 
     /// Called when the RangeSeekSlider values are changed
     ///

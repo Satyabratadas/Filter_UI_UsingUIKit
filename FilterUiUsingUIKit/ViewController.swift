@@ -35,8 +35,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func viewDidLoad() {
         
-        sections.append(Section(mainCellTitle: "Category", expandableCellOptions: category, isExpandableCellsHidden: true))
-        sections.append(Section(mainCellTitle: "Slider", expandableCellOptions: [], isExpandableCellsHidden: true))
+        sections.append(Section(mainCellTitle: "CATEGORIES", expandableCellOptions: category, isExpandableCellsHidden: true))
+        sections.append(Section(mainCellTitle: "PRICE", expandableCellOptions: [], isExpandableCellsHidden: true))
         sections.append(Section(mainCellTitle: "Sort By", expandableCellOptions: sortBy, isExpandableCellsHidden: true))
         sections.append(Section(mainCellTitle: "Color", expandableCellOptions: color, isExpandableCellsHidden: true))
         self.filtersTableView.register(UINib(nibName: tapableCellIdentifier, bundle: nil), forCellReuseIdentifier: tapableCellIdentifier)
@@ -80,6 +80,7 @@ extension ViewController{
         if indexPath.section == 1 {
             // Load a different cell for a specific section
             let cell = tableView.dequeueReusableCell(withIdentifier: sliderCellIdentifier, for: indexPath) as! CGFilterPriceTableViewCell
+            cell.sliderCellHeader.text = sections[indexPath.section].mainCellTitle
             cell.delegate = self
             cell.setPrice(minPrice: 0, maxPrice: 5000)
             cell.setSelectedPrice(minSelectedPrice: 0 , maxSelectedPrice: 5000)
@@ -111,7 +112,7 @@ extension ViewController{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1{
-            return 100
+            return 120
         }else{
             if indexPath.row == 0{
                 return 50
