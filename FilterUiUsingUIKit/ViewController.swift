@@ -13,7 +13,11 @@ struct Section {
     var isExpandableCellsHidden: Bool
 }
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate{
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, CGFilterPriceTableViewCellDelegate{
+    func cgFilterPriceTableViewCellDelegatePriceChange(minSelectedValue: Int, maxSelectedValue: Int) {
+        print("maxvalue\(maxSelectedValue), minvalue\(minSelectedValue)")
+    }
+    
     
     
     @IBOutlet weak var clearAllBtn: UIButton!
@@ -21,7 +25,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var filtersTableView: UITableView!
     @IBOutlet weak var applyBtn: UIButton!
     let tapableCellIdentifier = "TableViewCellForTapableSection"
-    let sliderCellIdentifier = "TableViewCellForSlider"
+    let sliderCellIdentifier = "CGFilterPriceTableViewCell"
     let cellIdentifier = "TableViewCell"
     var category = ["Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
     var sortBy = ["A-Z", "Z-A"]
@@ -75,8 +79,11 @@ extension ViewController{
         
         if indexPath.section == 1 {
             // Load a different cell for a specific section
-            let cell = tableView.dequeueReusableCell(withIdentifier: sliderCellIdentifier, for: indexPath) as! TableViewCellForSlider
-            cell.sliderHeader.text = sections[indexPath.section].mainCellTitle
+            let cell = tableView.dequeueReusableCell(withIdentifier: sliderCellIdentifier, for: indexPath) as! CGFilterPriceTableViewCell
+            cell.delegate = self
+            cell.setPrice(minPrice: 0, maxPrice: 5000)
+            cell.setSelectedPrice(minSelectedPrice: 0 , maxSelectedPrice: 5000)
+//            cell.sliderHeader.text = sections[indexPath.section].mainCellTitle
             // Configure the cell as needed
             return cell
         }else{

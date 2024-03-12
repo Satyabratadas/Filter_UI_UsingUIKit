@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B9B03CC2BA092660017195D /* RangeSeekSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B03C92BA092660017195D /* RangeSeekSlider.swift */; };
+		0B9B03CD2BA092660017195D /* RangeSeekSliderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B03CA2BA092660017195D /* RangeSeekSliderDelegate.swift */; };
+		0B9B03D12BA092B40017195D /* CGFilterPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B03CE2BA092B40017195D /* CGFilterPriceTableViewCell.swift */; };
+		0B9B03D22BA092B40017195D /* CGFilterPriceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9B03CF2BA092B40017195D /* CGFilterPriceTableViewCell.xib */; };
+		0B9B03D42BA095A00017195D /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B03D32BA095A00017195D /* TapticEngine.swift */; };
 		A33EF97A2B827A45003EFB6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33EF9792B827A45003EFB6F /* AppDelegate.swift */; };
 		A33EF97C2B827A45003EFB6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33EF97B2B827A45003EFB6F /* SceneDelegate.swift */; };
 		A33EF97E2B827A45003EFB6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33EF97D2B827A45003EFB6F /* ViewController.swift */; };
@@ -22,6 +27,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B9B03C92BA092660017195D /* RangeSeekSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSeekSlider.swift; sourceTree = "<group>"; };
+		0B9B03CA2BA092660017195D /* RangeSeekSliderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSeekSliderDelegate.swift; sourceTree = "<group>"; };
+		0B9B03CE2BA092B40017195D /* CGFilterPriceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFilterPriceTableViewCell.swift; sourceTree = "<group>"; };
+		0B9B03CF2BA092B40017195D /* CGFilterPriceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CGFilterPriceTableViewCell.xib; sourceTree = "<group>"; };
+		0B9B03D32BA095A00017195D /* TapticEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapticEngine.swift; sourceTree = "<group>"; };
 		A33EF9762B827A45003EFB6F /* FilterUiUsingUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterUiUsingUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A33EF9792B827A45003EFB6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A33EF97B2B827A45003EFB6F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +59,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B9B03CB2BA092660017195D /* RangeSeekSlider */ = {
+			isa = PBXGroup;
+			children = (
+				0B9B03D32BA095A00017195D /* TapticEngine.swift */,
+				0B9B03C92BA092660017195D /* RangeSeekSlider.swift */,
+				0B9B03CA2BA092660017195D /* RangeSeekSliderDelegate.swift */,
+			);
+			path = RangeSeekSlider;
+			sourceTree = "<group>";
+		};
+		0B9B03D02BA092B40017195D /* Price */ = {
+			isa = PBXGroup;
+			children = (
+				0B9B03CE2BA092B40017195D /* CGFilterPriceTableViewCell.swift */,
+				0B9B03CF2BA092B40017195D /* CGFilterPriceTableViewCell.xib */,
+			);
+			path = Price;
+			sourceTree = "<group>";
+		};
 		A33EF96D2B827A45003EFB6F = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +97,7 @@
 		A33EF9782B827A45003EFB6F /* FilterUiUsingUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				0B9B03CB2BA092660017195D /* RangeSeekSlider */,
 				A33EF98D2B827C16003EFB6F /* TableViewCell */,
 				A33EF9792B827A45003EFB6F /* AppDelegate.swift */,
 				A33EF97B2B827A45003EFB6F /* SceneDelegate.swift */,
@@ -83,6 +113,7 @@
 		A33EF98D2B827C16003EFB6F /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				0B9B03D02BA092B40017195D /* Price */,
 				A39B74782B964FB8008A78B6 /* TableViewCellForTapableSection.swift */,
 				A39B74762B964FAF008A78B6 /* TableViewCellForTapableSection.xib */,
 				A39B74742B964FA0008A78B6 /* TableViewCellForSlider.swift */,
@@ -154,6 +185,7 @@
 				A33EF9862B827A46003EFB6F /* LaunchScreen.storyboard in Resources */,
 				A33EF98F2B827C71003EFB6F /* TableViewCell.xib in Resources */,
 				A33EF9832B827A46003EFB6F /* Assets.xcassets in Resources */,
+				0B9B03D22BA092B40017195D /* CGFilterPriceTableViewCell.xib in Resources */,
 				A39B74732B964F97008A78B6 /* TableViewCellForSlider.xib in Resources */,
 				A33EF9812B827A45003EFB6F /* Main.storyboard in Resources */,
 				A39B74772B964FAF008A78B6 /* TableViewCellForTapableSection.xib in Resources */,
@@ -169,9 +201,13 @@
 			files = (
 				A39B74752B964FA0008A78B6 /* TableViewCellForSlider.swift in Sources */,
 				A39B74792B964FB8008A78B6 /* TableViewCellForTapableSection.swift in Sources */,
+				0B9B03D42BA095A00017195D /* TapticEngine.swift in Sources */,
 				A33EF97E2B827A45003EFB6F /* ViewController.swift in Sources */,
+				0B9B03CD2BA092660017195D /* RangeSeekSliderDelegate.swift in Sources */,
 				A33EF9912B827C7B003EFB6F /* TableViewCell.swift in Sources */,
 				A33EF97A2B827A45003EFB6F /* AppDelegate.swift in Sources */,
+				0B9B03CC2BA092660017195D /* RangeSeekSlider.swift in Sources */,
+				0B9B03D12BA092B40017195D /* CGFilterPriceTableViewCell.swift in Sources */,
 				A33EF97C2B827A45003EFB6F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
