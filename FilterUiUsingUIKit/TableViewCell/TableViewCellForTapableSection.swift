@@ -1,5 +1,5 @@
 //
-//  TableViewCell.swift
+//  TableViewCellForTapableSection.swift
 //  Multiple_TapableSection_TableView
 //
 //  Created by Satyabrata Das on 01/03/24.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell {
+class TableViewCellForTapableSection: UITableViewCell {
 
-    @IBOutlet weak var sectionCellName: UILabel!
+    @IBOutlet weak var cellHeaderTxt: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
