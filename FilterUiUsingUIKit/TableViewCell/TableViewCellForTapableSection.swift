@@ -8,7 +8,8 @@
 import UIKit
 
 class TableViewCellForTapableSection: UITableViewCell {
-
+    @IBOutlet weak var cellView: UIView!
+    
     @IBOutlet weak var cellHeaderTxt: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
