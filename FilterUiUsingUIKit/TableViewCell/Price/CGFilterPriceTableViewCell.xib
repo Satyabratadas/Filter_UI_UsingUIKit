@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="498" height="136"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bsq-DU-BWT">
-                                <rect key="frame" x="0.0" y="75" width="498" height="35"/>
+                                <rect key="frame" x="0.0" y="70" width="498" height="35"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ii2-wy-wlM">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
@@ -134,7 +134,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiB-Up-3JG" customClass="RangeSeekSlider" customModule="FilterUiUsingUIKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="30" width="498" height="35"/>
+                                <rect key="frame" x="-5" y="35" width="508" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.84693342449999998" green="0.88074725870000004" blue="0.95274287459999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -154,7 +154,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKB-Xn-t5j">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
+                                <rect key="frame" x="0.0" y="5" width="50" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="dQo-yg-hrM"/>
                                 </constraints>
@@ -165,15 +165,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wiB-Up-3JG" firstAttribute="trailing" secondItem="Bsq-DU-BWT" secondAttribute="trailing" id="2SE-R5-4mB"/>
+                            <constraint firstItem="wiB-Up-3JG" firstAttribute="trailing" secondItem="Bsq-DU-BWT" secondAttribute="trailing" constant="5" id="2SE-R5-4mB"/>
                             <constraint firstItem="wiB-Up-3JG" firstAttribute="top" secondItem="Xq9-ru-Pvl" secondAttribute="top" constant="40" id="BKB-px-dTo"/>
-                            <constraint firstItem="JKB-Xn-t5j" firstAttribute="top" secondItem="Xq9-ru-Pvl" secondAttribute="top" id="Bn6-Mp-ipl"/>
+                            <constraint firstItem="JKB-Xn-t5j" firstAttribute="top" secondItem="Xq9-ru-Pvl" secondAttribute="top" constant="5" id="Bn6-Mp-ipl"/>
                             <constraint firstItem="Bsq-DU-BWT" firstAttribute="leading" secondItem="Xq9-ru-Pvl" secondAttribute="leading" id="LQP-Kg-aTe"/>
                             <constraint firstItem="wiB-Up-3JG" firstAttribute="top" secondItem="JKB-Xn-t5j" secondAttribute="bottom" constant="10" id="RRH-f5-t74"/>
-                            <constraint firstItem="wiB-Up-3JG" firstAttribute="leading" secondItem="Bsq-DU-BWT" secondAttribute="leading" id="TWU-SP-qUR"/>
+                            <constraint firstItem="wiB-Up-3JG" firstAttribute="leading" secondItem="Bsq-DU-BWT" secondAttribute="leading" constant="-5" id="TWU-SP-qUR"/>
                             <constraint firstItem="JKB-Xn-t5j" firstAttribute="leading" secondItem="Xq9-ru-Pvl" secondAttribute="leading" id="ejB-mz-fwM"/>
                             <constraint firstAttribute="trailing" secondItem="Bsq-DU-BWT" secondAttribute="trailing" id="gks-3G-EqG"/>
-                            <constraint firstItem="Bsq-DU-BWT" firstAttribute="top" secondItem="wiB-Up-3JG" secondAttribute="bottom" constant="10" id="m8v-OV-10U"/>
+                            <constraint firstItem="Bsq-DU-BWT" firstAttribute="top" secondItem="wiB-Up-3JG" secondAttribute="bottom" id="m8v-OV-10U"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Bsq-DU-BWT" secondAttribute="bottom" constant="10" id="y8W-2G-VWO"/>
                         </constraints>
                         <variation key="default">
@@ -204,6 +204,11 @@
             <point key="canvasLocation" x="253.43511450381678" y="32.394366197183103"/>
         </tableViewCell>
     </objects>
+    <designables>
+        <designable name="wiB-Up-3JG">
+            <size key="intrinsicContentSize" width="-1" height="65"/>
+        </designable>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

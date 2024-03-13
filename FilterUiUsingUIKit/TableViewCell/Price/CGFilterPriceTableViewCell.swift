@@ -77,7 +77,9 @@ class CGFilterPriceTableViewCell: UITableViewCell  {
        // self.rangeSliderCurrency.selectedMaxValue = 150.0
         //self.rangeSliderCurrency.minDistance = 20.0
         //self.rangeSliderCurrency.maxDistance = 80.0
-        self.rangeSliderCurrency.handleColor = .systemRed
+        self.rangeSliderCurrency.handleColor = .white
+        self.rangeSliderCurrency.handleBorderWidth = 1
+        self.rangeSliderCurrency.handleBorderColor = .black
         self.rangeSliderCurrency.handleDiameter = 20.0
         
         self.rangeSliderCurrency.delegate = self
@@ -87,7 +89,7 @@ class CGFilterPriceTableViewCell: UITableViewCell  {
         self.rangeSliderCurrency.selectedMaxValue = 60.0
        
         self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1.0
-        self.rangeSliderCurrency.lineHeight = 10.0
+        self.rangeSliderCurrency.lineHeight = 2.0
 
     }
     
@@ -96,7 +98,7 @@ class CGFilterPriceTableViewCell: UITableViewCell  {
         
         guard let minPrice = minPrice, let maxPrice = maxPrice else { return }
         
-        self.rangeSliderCurrency.minValue = 0.0
+        self.rangeSliderCurrency.minValue = CGFloat(minPrice)//0.0
         self.rangeSliderCurrency.maxValue = CGFloat(maxPrice)
         // self.rangeSliderCurrency.selectedMinValue = CGFloat(minPrice)
         // self.rangeSliderCurrency.selectedMaxValue = CGFloat(maxPrice)

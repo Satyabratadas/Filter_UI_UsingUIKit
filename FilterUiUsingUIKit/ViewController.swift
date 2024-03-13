@@ -30,15 +30,18 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var category = ["Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
     var sortBy = ["A-Z", "Z-A"]
     var color = ["Red", "Green", "Blue"]
+    var size = ["Regular", "Large", "Medium"]
     var sections: [Section] = []
+    var selectedCells : [IndexPath:String] = [:]
     
     
     override func viewDidLoad() {
         
-        sections.append(Section(mainCellTitle: "CATEGORIES", expandableCellOptions: category, isExpandableCellsHidden: true))
+        sections.append(Section(mainCellTitle: "CATEGORIES", expandableCellOptions: category, isExpandableCellsHidden: false))
         sections.append(Section(mainCellTitle: "PRICE", expandableCellOptions: [], isExpandableCellsHidden: true))
         sections.append(Section(mainCellTitle: "Sort By", expandableCellOptions: sortBy, isExpandableCellsHidden: true))
         sections.append(Section(mainCellTitle: "Color", expandableCellOptions: color, isExpandableCellsHidden: true))
+        sections.append(Section(mainCellTitle: "Size", expandableCellOptions: size, isExpandableCellsHidden: true))
         self.filtersTableView.register(UINib(nibName: tapableCellIdentifier, bundle: nil), forCellReuseIdentifier: tapableCellIdentifier)
         self.filtersTableView.register(UINib(nibName: sliderCellIdentifier, bundle: nil), forCellReuseIdentifier: sliderCellIdentifier)
         self.filtersTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
@@ -94,7 +97,22 @@ extension ViewController{
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
-                cell.sectionCellName.text = sections[indexPath.section].expandableCellOptions[indexPath.row - 1]
+                if let selectedData = selectedCells[indexPath] {
+                        cell.sectionCellName.text = selectedData
+                        if indexPath.section == 4{
+                            cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_checkBox")
+                        }else{
+                            cell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
+                        }
+                    
+                } else {
+                    cell.sectionCellName.text = sections[indexPath.section].expandableCellOptions[indexPath.row - 1]
+                    if indexPath.section == 4{
+                        cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_unCheckBox")
+                    }else{
+                        cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
+                    }
+                }
                 return cell
             }
         }
@@ -103,16 +121,39 @@ extension ViewController{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section != 1{
-            if indexPath.row == 0{
+            if indexPath.row != 0{
+                var selectedFilters : [String] = []
+                if indexPath.section == 4{
+                    if let selectedCell = tableView.cellForRow(at: indexPath) as? TableViewCell{
+                        selectedCell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_checkBox")
+                        if let selectFilter = selectedCell.sectionCellName.text{
+                            selectedFilters.append(selectFilter)
+                        }
+                        print("Selected cell: \(selectedCell)")
+                    }
+                }else{
+                    if let selectedCell = tableView.cellForRow(at: indexPath) as? TableViewCell{
+                        selectedCell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
+                        if let selectFilter = selectedCell.sectionCellName.text{
+                            selectedFilters.append(selectFilter)
+                        }
+                        print("Selected cell: \(selectedCell)")
+                    }
+                }
+                for filter in selectedFilters{
+                    selectedCells[indexPath] = filter
+                }
+                print("selected filters cells \(selectedCells)")
+            }else {
                 sections[indexPath.section].isExpandableCellsHidden = !sections[indexPath.section].isExpandableCellsHidden
-                tableView.reloadData()
+                tableView.reloadSections([indexPath.section], with: .none)
             }
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1{
-            return 120
+            return 110
         }else{
             if indexPath.row == 0{
                 return 50
@@ -122,7 +163,6 @@ extension ViewController{
         }
         
     }
-
-
+  
 }
 
