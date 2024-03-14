@@ -37,6 +37,7 @@ extension ViewController {
     class HaderButtonAction : UIButton {
         
         var section : Int?
+        weak var cell : TableViewCellForTapableSection?
     }
     
 }
@@ -293,26 +294,43 @@ extension ViewController{
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 18))
-        let label = UILabel()
-        label.frame = CGRect.init(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height)
+        
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: tapableCellIdentifier) as! TableViewCellForTapableSection
+        headerCell.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 18)
         let title = sections[section].sectionData.mainCellTitle
-        label.text = title
-        label.font = .systemFont(ofSize: 16)
-        label.textColor = .black
-        headerView.addSubview(label)
+        headerCell.cellHeaderTxt.text = title
+        headerCell.dropDownImage.image = UIImage(named: "down")
+        
+       
+        
+        if sections[section].sectionData.isExpandabled {
+            headerCell.dropDownImage.image = UIImage(named: "up")
+        }else {
+            headerCell.dropDownImage.image = UIImage(named: "down")
+        }
+        
+        
+//        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 18))
+//        let label = UILabel()
+//        label.frame = CGRect.init(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height)
+//        let title = sections[section].sectionData.mainCellTitle
+//        label.text = title
+//        label.font = .systemFont(ofSize: 16)
+//        label.textColor = .black
+//        headerView.addSubview(label)
         
         switch sections[section].index.section {
         case .price:break
         default:
             let btn = HaderButtonAction()
             btn.section = section
-            btn.frame = headerView.frame
+            btn.cell = headerCell
+            btn.frame = headerCell.frame
             btn.addTarget(self, action: #selector(addTarget), for: .touchUpInside)
-            headerView.addSubview(btn)
+            headerCell.addSubview(btn)
         }
         
-        return headerView
+        return headerCell
     }
     
     
@@ -324,14 +342,20 @@ extension ViewController{
 
             }
         }
+//
         if sections[sender.section!].sectionData.isExpandabled {
             sections[sender.section!].sectionData.isExpandabled = false
+            sender.cell?.dropDownImage.image = UIImage(named: "up")
+             
         }else {
             sections[sender.section!].sectionData.isExpandabled = true
+            sender.cell?.dropDownImage.image = UIImage(named: "down")
         }
-        
-        
         self.filtersTableView.reloadData()
+//        self.filtersTableView.reloadSections(IndexSet(integer: sender.section ?? 0), with: .none)
+//        sender.cell.
+        
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -348,72 +372,17 @@ extension ViewController{
         default:
             sections[indexPath.section].index.row = [indexPath.row]
         }
+//        if let  = self.collectionView  {
+//                            UIView.transition(with: tableView, duration: 0.6, options: .transitionCrossDissolve, animations: {
+//                                tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
+//                            }, completion: nil)
+//                        }
         
 
         tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
         
     }
 
-    
-    
-   /* func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section != 1{
-            if indexPath.row != 0{
-                var selectedFilters : [String] = []
-                if indexPath.section == 4{
-                    /// only applicable for size filters
-                    if let selectedCell = tableView.cellForRow(at: indexPath) as? TableViewCell{
-                        if let selectFilter = selectedCell.sectionCellName.text{
-                            if let selectedData = selectedCells[indexPath] {
-                                selectedCell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_unCheckBox")
-                                selectedFilters.removeAll { $0 == selectedData }
-                                selectedCells.removeValue(forKey: indexPath)
-                            }
-//                            else{
-                                selectedCell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_checkBox")
-                                selectedFilters.append(selectFilter)
-//                            }
-                        }
-                        print("Selected cell: \(selectedFilters)")
-                    }
-                }else{
-                    
-                    
-                        if let selectedIndexPathRow = self.selectedIndexPathRow{
-                            if selectedIndexPathRow == indexPath.row{
-                                
-                                self.selectedIndexPathRow = nil
-                            }else{
-                                
-                                self.selectedIndexPathRow = indexPath.row
-                            }
-                            
-                        }else{
-                            if let selectedCell = tableView.cellForRow(at: indexPath) as? TableViewCell{
-                                if let selectFilter = selectedCell.sectionCellName.text{
-                                    selectedCell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
-                                    selectedFilters.append(selectFilter)
-                                    self.selectedIndexPathRow = indexPath.row
-                                }
-                                print("Selected cell: \(selectedCell)")
-                            }
-                        }
-                            
-//                        }
-                        
-//                    }
-                }
-                for filter in selectedFilters{
-                    selectedCells[indexPath] = filter
-                }
-                print("selected filters cells \(selectedCells)")
-            }else {
-                sections[indexPath.section].isExpandableCellsHidden = !sections[indexPath.section].isExpandableCellsHidden
-                tableView.reloadSections([indexPath.section], with: .none)
-            }
-        }
-    } */
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch sections[indexPath.section].index.section {
         case .price : return 80

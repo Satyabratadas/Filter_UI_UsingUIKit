@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="498" height="136"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bsq-DU-BWT">
-                                <rect key="frame" x="0.0" y="35" width="498" height="35"/>
+                                <rect key="frame" x="0.0" y="35" width="493" height="35"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ii2-wy-wlM">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
@@ -74,7 +74,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1zq-hs-Yo0">
-                                        <rect key="frame" x="398" y="0.0" width="100" height="35"/>
+                                        <rect key="frame" x="393" y="0.0" width="100" height="35"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KD-Q3-wij">
                                                 <rect key="frame" x="25" y="0.0" width="10" height="35"/>
@@ -134,7 +134,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wiB-Up-3JG" customClass="RangeSeekSlider" customModule="FilterUiUsingUIKit" customModuleProvider="target">
-                                <rect key="frame" x="-5" y="0.0" width="508" height="35"/>
+                                <rect key="frame" x="-5" y="0.0" width="503" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.84693342449999998" green="0.88074725870000004" blue="0.95274287459999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -157,19 +157,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="wiB-Up-3JG" firstAttribute="trailing" secondItem="Bsq-DU-BWT" secondAttribute="trailing" constant="5" id="2SE-R5-4mB"/>
-                            <constraint firstItem="wiB-Up-3JG" firstAttribute="top" secondItem="Xq9-ru-Pvl" secondAttribute="top" constant="40" id="BKB-px-dTo"/>
                             <constraint firstItem="Bsq-DU-BWT" firstAttribute="leading" secondItem="Xq9-ru-Pvl" secondAttribute="leading" id="LQP-Kg-aTe"/>
                             <constraint firstItem="wiB-Up-3JG" firstAttribute="top" secondItem="Xq9-ru-Pvl" secondAttribute="top" id="RRH-f5-t74"/>
                             <constraint firstItem="wiB-Up-3JG" firstAttribute="leading" secondItem="Bsq-DU-BWT" secondAttribute="leading" constant="-5" id="TWU-SP-qUR"/>
-                            <constraint firstAttribute="trailing" secondItem="Bsq-DU-BWT" secondAttribute="trailing" id="gks-3G-EqG"/>
+                            <constraint firstAttribute="trailing" secondItem="Bsq-DU-BWT" secondAttribute="trailing" constant="5" id="gks-3G-EqG"/>
                             <constraint firstItem="Bsq-DU-BWT" firstAttribute="top" secondItem="wiB-Up-3JG" secondAttribute="bottom" id="m8v-OV-10U"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Bsq-DU-BWT" secondAttribute="bottom" constant="10" id="y8W-2G-VWO"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="BKB-px-dTo"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <constraints>
