@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,27 +18,41 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baz-8H-Pig">
-                        <rect key="frame" x="30" y="0.0" width="270" height="44"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Aa-mZ-QI7">
-                        <rect key="frame" x="0.0" y="14.666666666666664" width="15" height="15"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CrB-fV-xh6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Aa-mZ-QI7">
+                                <rect key="frame" x="0.0" y="14.666666666666664" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="7HO-RM-w4d"/>
+                                    <constraint firstAttribute="height" constant="15" id="Nj5-B1-gLF"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baz-8H-Pig">
+                                <rect key="frame" x="25" y="0.0" width="295" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="15" id="byb-n0-3Ao"/>
-                            <constraint firstAttribute="height" constant="15" id="iWW-0B-o9B"/>
+                            <constraint firstItem="3Aa-mZ-QI7" firstAttribute="leading" secondItem="CrB-fV-xh6" secondAttribute="leading" id="GX9-8H-pmj"/>
+                            <constraint firstItem="baz-8H-Pig" firstAttribute="leading" secondItem="3Aa-mZ-QI7" secondAttribute="trailing" constant="10" id="V5F-VL-GVL"/>
+                            <constraint firstAttribute="bottom" secondItem="baz-8H-Pig" secondAttribute="bottom" id="Wvr-aj-75a"/>
+                            <constraint firstItem="3Aa-mZ-QI7" firstAttribute="centerY" secondItem="CrB-fV-xh6" secondAttribute="centerY" id="fkR-a0-tzF"/>
+                            <constraint firstItem="baz-8H-Pig" firstAttribute="top" secondItem="CrB-fV-xh6" secondAttribute="top" id="h65-2e-jsq"/>
+                            <constraint firstAttribute="trailing" secondItem="baz-8H-Pig" secondAttribute="trailing" id="wJI-gu-57V"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="y3Z-XG-FNs"/>
                         </constraints>
-                    </imageView>
+                    </view>
                 </subviews>
+                <color key="backgroundColor" red="1" green="0.059302580870000003" blue="0.091207228880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="baz-8H-Pig" secondAttribute="bottom" id="4gc-nc-xrb"/>
-                    <constraint firstItem="baz-8H-Pig" firstAttribute="leading" secondItem="3Aa-mZ-QI7" secondAttribute="trailing" constant="15" id="70y-V7-93a"/>
-                    <constraint firstItem="baz-8H-Pig" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Jo6-Nc-hRV"/>
-                    <constraint firstItem="3Aa-mZ-QI7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Oac-SZ-mlL"/>
-                    <constraint firstItem="3Aa-mZ-QI7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="QYB-Z2-Z7H"/>
-                    <constraint firstAttribute="trailing" secondItem="baz-8H-Pig" secondAttribute="trailing" constant="20" id="yjt-fK-UKp"/>
+                    <constraint firstItem="CrB-fV-xh6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Bc2-ds-BCg"/>
+                    <constraint firstAttribute="trailing" secondItem="CrB-fV-xh6" secondAttribute="trailing" id="JZp-nr-rRf"/>
+                    <constraint firstItem="CrB-fV-xh6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="WC0-XC-PHz"/>
+                    <constraint firstAttribute="bottom" secondItem="CrB-fV-xh6" secondAttribute="bottom" id="rMC-Db-Mc4"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -48,4 +63,9 @@
             <point key="canvasLocation" x="122.13740458015266" y="20.422535211267608"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

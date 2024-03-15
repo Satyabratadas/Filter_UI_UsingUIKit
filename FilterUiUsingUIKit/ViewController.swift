@@ -109,10 +109,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         super.viewDidLoad()
         
-        self.filtersTableView.estimatedRowHeight = 40.0
+        self.filtersTableView.estimatedRowHeight = 30.0
         self.filtersTableView.rowHeight = UITableView.automaticDimension
 
-       
+        self.filtersTableView.tableFooterView = UIView()
     }
 
     @IBAction func clearallFilterBtn(_ sender: UIButton) {
@@ -230,7 +230,7 @@ extension ViewController{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: sliderCellIdentifier, for: indexPath) as! CGFilterPriceTableViewCell
         
-        let cellData = sections[indexPath.section]
+      //  let cellData = sections[indexPath.section]
 
       //  cell.sliderCellHeader.text = cellData.sectionData.mainCellTitle
         cell.delegate = self
@@ -293,14 +293,20 @@ extension ViewController{
         
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        return nil
+        
+    }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerCell = tableView.dequeueReusableCell(withIdentifier: tapableCellIdentifier) as! TableViewCellForTapableSection
-        headerCell.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 18)
+        headerCell.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40)
         let title = sections[section].sectionData.mainCellTitle
         headerCell.cellHeaderTxt.text = title
         headerCell.dropDownImage.image = UIImage(named: "down")
-        
+//        headerCell.backgroundColor = .cyan
        
         
         if sections[section].sectionData.isExpandabled {
@@ -320,7 +326,8 @@ extension ViewController{
 //        headerView.addSubview(label)
         
         switch sections[section].index.section {
-        case .price:break
+        case .price:
+            headerCell.dropDownImage.isHidden = true
         default:
             let btn = HaderButtonAction()
             btn.section = section
@@ -336,10 +343,9 @@ extension ViewController{
     
     @objc func addTarget(_ sender: HaderButtonAction){
         
-        for (section, data) in sections.enumerated() {
-            if sender.section != section{
-                sections[section].sectionData.isExpandabled = false
-
+        for sectionIndex in 0..<sections.count {
+            if sender.section != sectionIndex{
+                sections[sectionIndex].sectionData.isExpandabled = false
             }
         }
 //
@@ -379,15 +385,23 @@ extension ViewController{
 //                        }
         
 
-        tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
+        tableView.reloadData()
         
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch sections[indexPath.section].index.section {
-        case .price : return 80
-        default : return 30
-        }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        switch sections[indexPath.section].index.section {
+//        case .price : return 80
+//        default : return 30
+//        }
+//    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+       
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude // Set minimal height for the section footer (if needed)
     }
   
 }
