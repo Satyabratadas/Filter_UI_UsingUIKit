@@ -8,8 +8,10 @@
 import UIKit
 
 class TableViewCellForTapableSection: UITableViewCell {
-    @IBOutlet weak var cellView: UIView!
+   
     
+    @IBOutlet weak var cellHeaderTxtTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var seperatorView: UIView!
     @IBOutlet weak var dropDownImage: UIImageView!
     @IBOutlet weak var cellHeaderTxt: UILabel!
     override func awakeFromNib() {

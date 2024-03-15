@@ -220,6 +220,12 @@ extension ViewController{
         }else{
             cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
         }
+        
+        if indexPath.row == 0{
+            cell.sectionCellNameTopConstraint.constant = 30
+        }else{
+            cell.sectionCellNameTopConstraint.constant = 15
+        }
 
         cell.selectionStyle = .none
         
@@ -230,9 +236,6 @@ extension ViewController{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: sliderCellIdentifier, for: indexPath) as! CGFilterPriceTableViewCell
         
-      //  let cellData = sections[indexPath.section]
-
-      //  cell.sliderCellHeader.text = cellData.sectionData.mainCellTitle
         cell.delegate = self
         cell.setPrice(minPrice: 0, maxPrice: 5000)
         cell.setSelectedPrice(minSelectedPrice: 0 , maxSelectedPrice: 5000)
@@ -254,6 +257,12 @@ extension ViewController{
         }else{
             cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
         }
+        
+        if indexPath.row == 0{
+            cell.sectionCellNameTopConstraint.constant = 30
+        }else{
+            cell.sectionCellNameTopConstraint.constant = 15
+        }
 
         return cell
     }
@@ -271,6 +280,11 @@ extension ViewController{
             cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
         }
         
+        if indexPath.row == 0{
+            cell.sectionCellNameTopConstraint.constant = 30
+        }else{
+            cell.sectionCellNameTopConstraint.constant = 15
+        }
 
         return cell
     }
@@ -289,15 +303,16 @@ extension ViewController{
             cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_unCheckBox")
         }
         
+        if indexPath.row == 0{
+            cell.sectionCellNameTopConstraint.constant = 30
+        }else{
+            cell.sectionCellNameTopConstraint.constant = 15
+        }
         return cell
         
     }
     
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        return nil
-        
-    }
+  
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -306,7 +321,8 @@ extension ViewController{
         let title = sections[section].sectionData.mainCellTitle
         headerCell.cellHeaderTxt.text = title
         headerCell.dropDownImage.image = UIImage(named: "down")
-//        headerCell.backgroundColor = .cyan
+        headerCell.seperatorView.layer.backgroundColor = UIColor.lightGray.cgColor
+        headerCell.backgroundColor = .cyan
        
         
         if sections[section].sectionData.isExpandabled {
@@ -316,18 +332,20 @@ extension ViewController{
         }
         
         
-//        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 18))
-//        let label = UILabel()
-//        label.frame = CGRect.init(x: 0, y: 0, width: headerView.frame.width, height: headerView.frame.height)
-//        let title = sections[section].sectionData.mainCellTitle
-//        label.text = title
-//        label.font = .systemFont(ofSize: 16)
-//        label.textColor = .black
-//        headerView.addSubview(label)
-        
         switch sections[section].index.section {
         case .price:
             headerCell.dropDownImage.isHidden = true
+            headerCell.seperatorView.isHidden = true
+            headerCell.cellHeaderTxtTopConstraint.constant = 0
+        case .categories,.sortedBy:
+            headerCell.seperatorView.isHidden = true
+            headerCell.cellHeaderTxtTopConstraint.constant = 10
+            let btn = HaderButtonAction()
+            btn.section = section
+            btn.cell = headerCell
+            btn.frame = headerCell.frame
+            btn.addTarget(self, action: #selector(addTarget), for: .touchUpInside)
+            headerCell.addSubview(btn)
         default:
             let btn = HaderButtonAction()
             btn.section = section
@@ -378,31 +396,21 @@ extension ViewController{
         default:
             sections[indexPath.section].index.row = [indexPath.row]
         }
-//        if let  = self.collectionView  {
-//                            UIView.transition(with: tableView, duration: 0.6, options: .transitionCrossDissolve, animations: {
-//                                tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
-//                            }, completion: nil)
-//                        }
-        
-
         tableView.reloadData()
         
     }
 
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        switch sections[indexPath.section].index.section {
-//        case .price : return 80
-//        default : return 30
-//        }
-//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        switch sections[section].index.section{
+        case .categories,.price,.sortedBy:
+            return 35
+        default :
+            return 40
+        }
+        
     }
-       
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return .leastNormalMagnitude // Set minimal height for the section footer (if needed)
-    }
+
   
 }
 

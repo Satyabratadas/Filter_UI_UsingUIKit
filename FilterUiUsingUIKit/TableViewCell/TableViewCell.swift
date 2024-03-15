@@ -9,6 +9,7 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
+    @IBOutlet weak var sectionCellNameTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var typeofSelectedBtn: UIImageView!
     @IBOutlet weak var sectionCellName: UILabel!
     override func awakeFromNib() {

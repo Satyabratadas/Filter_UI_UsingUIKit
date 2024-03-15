@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,8 +18,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2KL-Nw-qNT" userLabel="Seperator view">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="zsz-D5-iiK"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5h4-fM-VaT">
-                        <rect key="frame" x="0.0" y="0.0" width="290" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="290" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="147" id="UPd-KF-njU"/>
                         </constraints>
@@ -32,7 +40,7 @@
                         </variation>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gee-qB-IRy">
-                        <rect key="frame" x="290" y="9.6666666666666643" width="30" height="25"/>
+                        <rect key="frame" x="290" y="19.666666666666671" width="30" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="03s-Wn-VD6"/>
                             <constraint firstAttribute="width" constant="30" id="xUQ-wP-Uei"/>
@@ -40,20 +48,36 @@
                     </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="gee-qB-IRy" firstAttribute="centerY" secondItem="5h4-fM-VaT" secondAttribute="centerY" id="JED-oO-6BU"/>
                     <constraint firstItem="gee-qB-IRy" firstAttribute="leading" secondItem="5h4-fM-VaT" secondAttribute="trailing" id="PW2-8D-qdi"/>
                     <constraint firstAttribute="trailing" secondItem="gee-qB-IRy" secondAttribute="trailing" id="TXi-gV-k0L"/>
-                    <constraint firstItem="5h4-fM-VaT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="VGy-L4-MqJ"/>
+                    <constraint firstItem="5h4-fM-VaT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="VGy-L4-MqJ"/>
                     <constraint firstAttribute="bottom" secondItem="5h4-fM-VaT" secondAttribute="bottom" id="ZB6-4r-yYG"/>
                     <constraint firstItem="gee-qB-IRy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aXs-fY-iIP"/>
+                    <constraint firstItem="2KL-Nw-qNT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="anX-6I-Tto"/>
                     <constraint firstItem="5h4-fM-VaT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="dhC-cI-WUF"/>
+                    <constraint firstAttribute="trailing" secondItem="2KL-Nw-qNT" secondAttribute="trailing" id="fTd-GM-rkN"/>
+                    <constraint firstItem="2KL-Nw-qNT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oUw-N1-7u5"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="aXs-fY-iIP"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cellHeaderTxt" destination="5h4-fM-VaT" id="rpS-J4-QQ6"/>
+                <outlet property="cellHeaderTxtTopConstraint" destination="VGy-L4-MqJ" id="CTe-rB-Szs"/>
                 <outlet property="dropDownImage" destination="gee-qB-IRy" id="xhh-2g-yTS"/>
+                <outlet property="seperatorView" destination="2KL-Nw-qNT" id="yA6-rN-8o9"/>
             </connections>
             <point key="canvasLocation" x="-12.213740458015266" y="19.718309859154932"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
