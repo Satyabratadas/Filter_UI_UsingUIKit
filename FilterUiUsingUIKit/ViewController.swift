@@ -68,6 +68,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var sections = [FilterTitle]()
     //var selectedCells : [SectionCellIndexpath:Any] = [:]
 //    var selectedIndexPathRow: Int?    //not use currently check later
+    var initialCellCount = 10
     
     struct FilterTitle {
        
@@ -125,6 +126,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
 extension ViewController{
     
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
@@ -134,6 +137,21 @@ extension ViewController{
         
         switch section.index.section {
         case .price: return 1
+            /// check tomorrow
+//        case .categories:
+//                    if section.sectionData.isExpandabled {
+//                        if section.sectionData.expandableCellOptions.count > initialCellCount {
+//                            // If there are more than 10 cells, return 10 initially
+//                            return initialCellCount
+//                        } else {
+//                            // If there are 10 or fewer cells, return all cells
+//                            return section.sectionData.expandableCellOptions.count
+//                        }
+//                    } else {
+//                        // If not expandable, return all cells
+////                        return section.sectionData.expandableCellOptions.count
+//                        return 0
+//                    }
         default:
             
             if section.sectionData.isExpandabled {
@@ -344,6 +362,24 @@ extension ViewController{
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView(frame: .zero)
     }
+    
+    /// check tomorrow
+    /*
+     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+             let sectionData = sections[indexPath.section]
+             
+             // Check if it's the last cell and the section is expandable
+             if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 && sectionData.sectionData.isExpandabled {
+                 // Load more cells if available
+                 let remainingCells = sectionData.sectionData.expandableCellOptions.count - initialCellCount
+                 if remainingCells > 0 {
+                     initialCellCount += min(remainingCells, 10) // Load next 10 cells or remaining cells if less than 10
+                     tableView.reloadData() // Reload table view to display new cells
+                 }
+             }
+         }
+     */
+    
   
 }
 
