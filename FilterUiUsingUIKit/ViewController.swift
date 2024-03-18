@@ -61,7 +61,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     let tapableCellIdentifier = "TableViewCellForTapableSection"
     let sliderCellIdentifier = "CGFilterPriceTableViewCell"
     let cellIdentifier = "TableViewCell"
-    var category = ["Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
+    var category = ["Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
     var sortBy = ["A-Z", "Z-A"]
     var color = ["Red", "Green", "Blue"]
     var size = ["Regular", "Large", "Medium"]
@@ -102,14 +102,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         self.filtersTableView.estimatedRowHeight = 30.0
         self.filtersTableView.rowHeight = UITableView.automaticDimension
-        if #available(iOS 15.0, *) {
-            self.filtersTableView.sectionHeaderTopPadding = 0
-            } else {
-                // For older iOS versions, use the following workaround
-                if let headerView = self.filtersTableView.subviews.first(where: { $0 != self.filtersTableView.backgroundView }) as? UITableViewHeaderFooterView {
-                    headerView.frame.origin.y = -1
-                }
-            }
     }
 
     @IBAction func clearallFilterBtn(_ sender: UIButton) {
@@ -266,6 +258,7 @@ extension ViewController{
         headerCell.cellHeaderTxt.text = title
         headerCell.dropDownImage.image = UIImage(named: "down")
         headerCell.seperatorView.layer.backgroundColor = UIColor.lightGray.cgColor
+//        headerCell.backgroundColor = .cyan
         
         if sections[section].sectionData.isExpandabled {
             headerCell.dropDownImage.image = UIImage(named: "up")
@@ -341,8 +334,15 @@ extension ViewController{
         case .price:
             return 40
         default :
-            return 50
+            return 40
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView(frame: .zero)
     }
   
 }
