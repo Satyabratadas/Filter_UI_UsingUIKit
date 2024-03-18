@@ -67,7 +67,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var size = ["Regular", "Large", "Medium"]
     var sections = [FilterTitle]()
     //var selectedCells : [SectionCellIndexpath:Any] = [:]
-    var selectedIndexPathRow: Int?
+//    var selectedIndexPathRow: Int?    //not use currently check later
     
     struct FilterTitle {
        
@@ -110,8 +110,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                     headerView.frame.origin.y = -1
                 }
             }
-
-//        self.filtersTableView.tableFooterView = UIView()
     }
 
     @IBAction func clearallFilterBtn(_ sender: UIButton) {
