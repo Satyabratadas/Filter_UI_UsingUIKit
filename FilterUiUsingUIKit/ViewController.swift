@@ -107,7 +107,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             } else {
                 // For older iOS versions, use the following workaround
                 if let headerView = self.filtersTableView.subviews.first(where: { $0 != self.filtersTableView.backgroundView }) as? UITableViewHeaderFooterView {
-                    headerView.frame.origin.y = 2
+                    headerView.frame.origin.y = -1
                 }
             }
 
