@@ -90,15 +90,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Size", expandableCellOptions: size, isExpandabled: false), index: SectionCellIndexpath( section: .size)))
         
-        
-//        sections.append(Section(mainCellTitle: "CATEGORIES", expandableCellOptions: category, isExpandableCellsHidden: false))
-//        sections.append(Section(mainCellTitle: "PRICE", expandableCellOptions: [], isExpandableCellsHidden: true))
-//        sections.append(Section(mainCellTitle: "Sort By", expandableCellOptions: sortBy, isExpandableCellsHidden: true))
-//        sections.append(Section(mainCellTitle: "Color", expandableCellOptions: color, isExpandableCellsHidden: true))
-//        sections.append(Section(mainCellTitle: "Size", expandableCellOptions: size, isExpandableCellsHidden: true))
-        
-        
-        
         self.filtersTableView.register(UINib(nibName: tapableCellIdentifier, bundle: nil), forCellReuseIdentifier: tapableCellIdentifier)
         self.filtersTableView.register(UINib(nibName: sliderCellIdentifier, bundle: nil), forCellReuseIdentifier: sliderCellIdentifier)
         self.filtersTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
@@ -111,8 +102,16 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         self.filtersTableView.estimatedRowHeight = 30.0
         self.filtersTableView.rowHeight = UITableView.automaticDimension
+        if #available(iOS 15.0, *) {
+            self.filtersTableView.sectionHeaderTopPadding = 0
+            } else {
+                // For older iOS versions, use the following workaround
+                if let headerView = self.filtersTableView.subviews.first(where: { $0 != self.filtersTableView.backgroundView }) as? UITableViewHeaderFooterView {
+                    headerView.frame.origin.y = 2
+                }
+            }
 
-        self.filtersTableView.tableFooterView = UIView()
+//        self.filtersTableView.tableFooterView = UIView()
     }
 
     @IBAction func clearallFilterBtn(_ sender: UIButton) {
@@ -175,35 +174,7 @@ extension ViewController{
             return UITableViewCell()
         }
     }
-    
-    /*
-     if indexPath.row == 0 {
-         let cell = tableView.dequeueReusableCell(withIdentifier: tapableCellIdentifier, for: indexPath) as! TableViewCellForTapableSection
-         cell.cellHeaderTxt.text = sections[indexPath.section].mainCellTitle
-         return cell
-     } else {
-         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
-         if let selectedData = selectedCells[indexPath] {
-                 cell.sectionCellName.text = selectedData
-                 if indexPath.section == 4{
-                     cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_checkBox")
-                 }else{
-                     cell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
-                 }
-             
-         } else {
-             cell.sectionCellName.text = sections[indexPath.section].expandableCellOptions[indexPath.row - 1]
-             if indexPath.section == 4{
-                 cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_unCheckBox")
-             }else{
-                 cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
-             }
-         }
-         cell.selectionStyle = .none
-         return cell
-     }
-     
-     **/
+   
     
     private func tableViewCategory(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -220,13 +191,6 @@ extension ViewController{
         }else{
             cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
         }
-        
-        if indexPath.row == 0{
-            cell.sectionCellNameTopConstraint.constant = 30
-        }else{
-            cell.sectionCellNameTopConstraint.constant = 15
-        }
-
         cell.selectionStyle = .none
         
         return cell
@@ -239,7 +203,6 @@ extension ViewController{
         cell.delegate = self
         cell.setPrice(minPrice: 0, maxPrice: 5000)
         cell.setSelectedPrice(minSelectedPrice: 0 , maxSelectedPrice: 5000)
-        
         return cell
     }
     
@@ -257,13 +220,7 @@ extension ViewController{
         }else{
             cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
         }
-        
-        if indexPath.row == 0{
-            cell.sectionCellNameTopConstraint.constant = 30
-        }else{
-            cell.sectionCellNameTopConstraint.constant = 15
-        }
-
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -279,13 +236,7 @@ extension ViewController{
         }else{
             cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
         }
-        
-        if indexPath.row == 0{
-            cell.sectionCellNameTopConstraint.constant = 30
-        }else{
-            cell.sectionCellNameTopConstraint.constant = 15
-        }
-
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -302,12 +253,7 @@ extension ViewController{
         }else{
             cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_unCheckBox")
         }
-        
-        if indexPath.row == 0{
-            cell.sectionCellNameTopConstraint.constant = 30
-        }else{
-            cell.sectionCellNameTopConstraint.constant = 15
-        }
+        cell.selectionStyle = .none
         return cell
         
     }
@@ -317,13 +263,11 @@ extension ViewController{
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let headerCell = tableView.dequeueReusableCell(withIdentifier: tapableCellIdentifier) as! TableViewCellForTapableSection
-        headerCell.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40)
+        headerCell.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50)
         let title = sections[section].sectionData.mainCellTitle
         headerCell.cellHeaderTxt.text = title
         headerCell.dropDownImage.image = UIImage(named: "down")
         headerCell.seperatorView.layer.backgroundColor = UIColor.lightGray.cgColor
-        headerCell.backgroundColor = .cyan
-       
         
         if sections[section].sectionData.isExpandabled {
             headerCell.dropDownImage.image = UIImage(named: "up")
@@ -336,10 +280,8 @@ extension ViewController{
         case .price:
             headerCell.dropDownImage.isHidden = true
             headerCell.seperatorView.isHidden = true
-            headerCell.cellHeaderTxtTopConstraint.constant = 0
         case .categories,.sortedBy:
             headerCell.seperatorView.isHidden = true
-            headerCell.cellHeaderTxtTopConstraint.constant = 10
             let btn = HaderButtonAction()
             btn.section = section
             btn.cell = headerCell
@@ -366,7 +308,6 @@ extension ViewController{
                 sections[sectionIndex].sectionData.isExpandabled = false
             }
         }
-//
         if sections[sender.section!].sectionData.isExpandabled {
             sections[sender.section!].sectionData.isExpandabled = false
             sender.cell?.dropDownImage.image = UIImage(named: "up")
@@ -376,10 +317,6 @@ extension ViewController{
             sender.cell?.dropDownImage.image = UIImage(named: "down")
         }
         self.filtersTableView.reloadData()
-//        self.filtersTableView.reloadSections(IndexSet(integer: sender.section ?? 0), with: .none)
-//        sender.cell.
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -403,14 +340,12 @@ extension ViewController{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch sections[section].index.section{
-        case .categories,.price,.sortedBy:
-            return 35
-        default :
+        case .price:
             return 40
+        default :
+            return 50
         }
-        
     }
-
   
 }
 

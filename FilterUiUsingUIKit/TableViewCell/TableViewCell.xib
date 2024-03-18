@@ -11,25 +11,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="FilterUiUsingUIKit" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="141" id="KGk-i7-Jjw" customClass="TableViewCell" customModule="FilterUiUsingUIKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="141"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CrB-fV-xh6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Aa-mZ-QI7">
-                                <rect key="frame" x="0.0" y="14.666666666666664" width="15" height="15"/>
+                                <rect key="frame" x="0.0" y="7.6666666666666679" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="7HO-RM-w4d"/>
                                     <constraint firstAttribute="height" constant="15" id="Nj5-B1-gLF"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baz-8H-Pig">
-                                <rect key="frame" x="25" y="0.0" width="295" height="44"/>
+                                <rect key="frame" x="25" y="0.0" width="295" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -38,22 +38,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3Aa-mZ-QI7" firstAttribute="leading" secondItem="CrB-fV-xh6" secondAttribute="leading" id="GX9-8H-pmj"/>
+                            <constraint firstItem="baz-8H-Pig" firstAttribute="centerY" secondItem="CrB-fV-xh6" secondAttribute="centerY" id="NWv-4S-COW"/>
                             <constraint firstItem="baz-8H-Pig" firstAttribute="leading" secondItem="3Aa-mZ-QI7" secondAttribute="trailing" constant="10" id="V5F-VL-GVL"/>
                             <constraint firstAttribute="bottom" secondItem="baz-8H-Pig" secondAttribute="bottom" id="Wvr-aj-75a"/>
-                            <constraint firstItem="3Aa-mZ-QI7" firstAttribute="centerY" secondItem="CrB-fV-xh6" secondAttribute="centerY" id="fkR-a0-tzF"/>
+                            <constraint firstItem="3Aa-mZ-QI7" firstAttribute="centerY" secondItem="baz-8H-Pig" secondAttribute="centerY" id="Zsw-be-AWY"/>
                             <constraint firstItem="baz-8H-Pig" firstAttribute="top" secondItem="CrB-fV-xh6" secondAttribute="top" id="h65-2e-jsq"/>
-                            <constraint firstItem="3Aa-mZ-QI7" firstAttribute="centerY" secondItem="baz-8H-Pig" secondAttribute="centerY" id="ovW-kk-EON"/>
                             <constraint firstAttribute="trailing" secondItem="baz-8H-Pig" secondAttribute="trailing" id="wJI-gu-57V"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="y3Z-XG-FNs"/>
+                            <constraint firstAttribute="height" constant="30" id="y3Z-XG-FNs"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="fkR-a0-tzF"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="1" green="0.059302580870000003" blue="0.091207228880000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="CrB-fV-xh6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Bc2-ds-BCg"/>
                     <constraint firstAttribute="trailing" secondItem="CrB-fV-xh6" secondAttribute="trailing" id="JZp-nr-rRf"/>
@@ -64,10 +58,11 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="sectionCellName" destination="baz-8H-Pig" id="7xn-fm-Dqc"/>
-                <outlet property="sectionCellNameTopConstraint" destination="h65-2e-jsq" id="bay-AR-L9Z"/>
+                <outlet property="sectionItemViewBottomConstraint" destination="rMC-Db-Mc4" id="tVY-5b-sK8"/>
+                <outlet property="sectionItemViewHeightConstraint" destination="y3Z-XG-FNs" id="tbX-Zg-4Aa"/>
                 <outlet property="typeofSelectedBtn" destination="3Aa-mZ-QI7" id="BGv-dN-WYT"/>
             </connections>
-            <point key="canvasLocation" x="122.13740458015266" y="20.422535211267608"/>
+            <point key="canvasLocation" x="122.13740458015266" y="54.577464788732399"/>
         </tableViewCell>
     </objects>
     <resources>
