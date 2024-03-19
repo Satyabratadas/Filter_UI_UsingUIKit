@@ -14,6 +14,8 @@
 		0B9B03D42BA095A00017195D /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B03D32BA095A00017195D /* TapticEngine.swift */; };
 		0B9B03D62BA32E460017195D /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B03D52BA32E460017195D /* SectionHeaderView.swift */; };
 		0B9B03D92BA32E730017195D /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9B03D82BA32E730017195D /* SectionHeaderView.xib */; };
+		0BBF276B2BA99F0A0082AF53 /* CategoryTableViewcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF276A2BA99F0A0082AF53 /* CategoryTableViewcell.xib */; };
+		0BBF276C2BA99F0A0082AF53 /* CategoryTableViewcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF27692BA99F0A0082AF53 /* CategoryTableViewcell.swift */; };
 		A33EF97A2B827A45003EFB6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33EF9792B827A45003EFB6F /* AppDelegate.swift */; };
 		A33EF97C2B827A45003EFB6F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33EF97B2B827A45003EFB6F /* SceneDelegate.swift */; };
 		A33EF97E2B827A45003EFB6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33EF97D2B827A45003EFB6F /* ViewController.swift */; };
@@ -36,6 +38,8 @@
 		0B9B03D32BA095A00017195D /* TapticEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapticEngine.swift; sourceTree = "<group>"; };
 		0B9B03D52BA32E460017195D /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		0B9B03D82BA32E730017195D /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
+		0BBF27692BA99F0A0082AF53 /* CategoryTableViewcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewcell.swift; sourceTree = "<group>"; };
+		0BBF276A2BA99F0A0082AF53 /* CategoryTableViewcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewcell.xib; sourceTree = "<group>"; };
 		A33EF9762B827A45003EFB6F /* FilterUiUsingUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterUiUsingUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A33EF9792B827A45003EFB6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A33EF97B2B827A45003EFB6F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +95,15 @@
 			path = SectionHeaderView;
 			sourceTree = "<group>";
 		};
+		0BBF27642BA999400082AF53 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				0BBF27692BA99F0A0082AF53 /* CategoryTableViewcell.swift */,
+				0BBF276A2BA99F0A0082AF53 /* CategoryTableViewcell.xib */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		A33EF96D2B827A45003EFB6F = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +140,7 @@
 		A33EF98D2B827C16003EFB6F /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				0BBF27642BA999400082AF53 /* Category */,
 				0B9B03D02BA092B40017195D /* Price */,
 				A39B74782B964FB8008A78B6 /* TableViewCellForTapableSection.swift */,
 				A39B74742B964FA0008A78B6 /* TableViewCellForSlider.swift */,
@@ -204,6 +218,7 @@
 				A33EF9812B827A45003EFB6F /* Main.storyboard in Resources */,
 				A39B74772B964FAF008A78B6 /* TableViewCellForTapableSection.xib in Resources */,
 				0B9B03D92BA32E730017195D /* SectionHeaderView.xib in Resources */,
+				0BBF276B2BA99F0A0082AF53 /* CategoryTableViewcell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +236,7 @@
 				A33EF97E2B827A45003EFB6F /* ViewController.swift in Sources */,
 				0B9B03CD2BA092660017195D /* RangeSeekSliderDelegate.swift in Sources */,
 				A33EF9912B827C7B003EFB6F /* TableViewCell.swift in Sources */,
+				0BBF276C2BA99F0A0082AF53 /* CategoryTableViewcell.swift in Sources */,
 				A33EF97A2B827A45003EFB6F /* AppDelegate.swift in Sources */,
 				0B9B03CC2BA092660017195D /* RangeSeekSlider.swift in Sources */,
 				0B9B03D12BA092B40017195D /* CGFilterPriceTableViewCell.swift in Sources */,
