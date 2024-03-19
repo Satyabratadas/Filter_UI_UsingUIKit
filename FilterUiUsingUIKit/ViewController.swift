@@ -25,6 +25,7 @@ extension ViewController {
         case price
         case sortedBy
         case color
+        case shape
         case size
         
     }
@@ -65,7 +66,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var category = ["Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
     var sortBy = ["A-Z", "Z-A"]
     var color = ["Red", "Green", "Blue"]
+    var shape = ["Square", "Rectangle"]
     var size = ["Regular", "Large", "Medium"]
+    
     var sections = [FilterTitle]()
     //var selectedCells : [SectionCellIndexpath:Any] = [:]
 //    var selectedIndexPathRow: Int?    //not use currently check later
@@ -89,6 +92,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         
         sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Color", expandableCellOptions: color, isExpandabled: false), index: SectionCellIndexpath( section: .color)))
+        
+        sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Shape", expandableCellOptions: shape, isExpandabled: false), index: SectionCellIndexpath( section: .shape)))
         
         sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Size", expandableCellOptions: size, isExpandabled: false), index: SectionCellIndexpath( section: .size)))
         
@@ -139,21 +144,6 @@ extension ViewController{
         
         switch section.index.section {
         case .price: return 1
-            /// check tomorrow
-//        case .categories:
-//                    if section.sectionData.isExpandabled {
-//                        if section.sectionData.expandableCellOptions.count > initialCellCount {
-//                            // If there are more than 10 cells, return 10 initially
-//                            return initialCellCount
-//                        } else {
-//                            // If there are 10 or fewer cells, return all cells
-//                            return section.sectionData.expandableCellOptions.count
-//                        }
-//                    } else {
-//                        // If not expandable, return all cells
-////                        return section.sectionData.expandableCellOptions.count
-//                        return 0
-//                    }
         case .categories:
             if section.sectionData.isExpandabled {
                 return 1
@@ -186,6 +176,8 @@ extension ViewController{
             return self.tableViewSortedBy(tableView, cellForRowAt: indexPath)
         case .color :
             return self.tableViewColor(tableView, cellForRowAt: indexPath)
+        case .shape:
+            return self.tableViewShape(tableView, cellForRowAt: indexPath)
         case .size :
             return self.tableViewSize(tableView, cellForRowAt: indexPath)
         default:
@@ -238,6 +230,22 @@ extension ViewController{
         let title = data.sectionData.expandableCellOptions[indexPath.row]
         cell.sectionCellName.text = title
         
+        if  indexPath.row == data.index.row.first {
+            cell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
+        }else{
+            cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
+        }
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    private func tableViewShape(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
+        let data = sections[indexPath.section]
+        let title = data.sectionData.expandableCellOptions[indexPath.row]
+        cell.sectionCellName.text = title
+
         if  indexPath.row == data.index.row.first {
             cell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
         }else{
