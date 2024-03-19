@@ -21,21 +21,21 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rvU-7b-czl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2KL-Nw-qNT" userLabel="Seperator view">
-                                <rect key="frame" x="0.0" y="5" width="310" height="1"/>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2KL-Nw-qNT" userLabel="Seperator view">
+                                <rect key="frame" x="0.0" y="5" width="315" height="1"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="VA4-Sz-Ss2"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5h4-fM-VaT">
-                                <rect key="frame" x="0.0" y="16" width="275" height="33"/>
+                                <rect key="frame" x="0.0" y="16" width="280" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gee-qB-IRy">
-                                <rect key="frame" x="285" y="20" width="25" height="25"/>
+                                <rect key="frame" x="290" y="20" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="Tar-rI-5r4"/>
                                     <constraint firstAttribute="height" constant="25" id="wkP-ff-iRh"/>
@@ -45,9 +45,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2KL-Nw-qNT" firstAttribute="top" secondItem="rvU-7b-czl" secondAttribute="top" constant="5" id="Dn7-Et-4bi"/>
-                            <constraint firstAttribute="trailing" secondItem="2KL-Nw-qNT" secondAttribute="trailing" constant="10" id="HWu-RC-8l1"/>
+                            <constraint firstAttribute="trailing" secondItem="2KL-Nw-qNT" secondAttribute="trailing" constant="5" id="HWu-RC-8l1"/>
                             <constraint firstItem="5h4-fM-VaT" firstAttribute="leading" secondItem="rvU-7b-czl" secondAttribute="leading" id="TNP-Rd-7rQ"/>
-                            <constraint firstAttribute="trailing" secondItem="gee-qB-IRy" secondAttribute="trailing" constant="10" id="YXF-uV-2ux"/>
+                            <constraint firstAttribute="trailing" secondItem="gee-qB-IRy" secondAttribute="trailing" constant="5" id="YXF-uV-2ux"/>
                             <constraint firstItem="5h4-fM-VaT" firstAttribute="top" secondItem="2KL-Nw-qNT" secondAttribute="bottom" constant="10" id="bdo-AL-nrJ"/>
                             <constraint firstItem="gee-qB-IRy" firstAttribute="leading" secondItem="5h4-fM-VaT" secondAttribute="trailing" constant="10" id="dCz-1i-mQz"/>
                             <constraint firstAttribute="bottom" secondItem="5h4-fM-VaT" secondAttribute="bottom" constant="5" id="hD0-2V-lq1"/>

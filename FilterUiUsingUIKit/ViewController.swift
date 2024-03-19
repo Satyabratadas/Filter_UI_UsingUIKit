@@ -43,7 +43,7 @@ extension ViewController {
 }
 
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, CGFilterPriceTableViewCellDelegate{
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, FilterPriceTableViewCellDelegate{
     
    
     
@@ -59,10 +59,10 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var filtersTableView: UITableView!
     @IBOutlet weak var applyBtn: UIButton!
     let tapableCellIdentifier = "TableViewCellForTapableSection"
-    let sliderCellIdentifier = "CGFilterPriceTableViewCell"
+    let sliderCellIdentifier = "FilterPriceTableViewCell"
     let cellIdentifier = "TableViewCell"
     let categoryCell = "CategoryTableViewcell"
-    var category = ["Banner", "Canvas Photo"]//, "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
+    var category = ["Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
     var sortBy = ["A-Z", "Z-A"]
     var color = ["Red", "Green", "Blue"]
     var size = ["Regular", "Large", "Medium"]
@@ -207,7 +207,7 @@ extension ViewController{
     
     private func tableViewPrice(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: sliderCellIdentifier, for: indexPath) as! CGFilterPriceTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: sliderCellIdentifier, for: indexPath) as! FilterPriceTableViewCell
         
         cell.delegate = self
         cell.setPrice(minPrice: 0, maxPrice: 5000)
@@ -375,7 +375,7 @@ extension ViewController{
                 // Set a custom height for cells in the "categories" section if item greater than 10
                 return 300
             }else{
-                //other wise return
+                //other wise return cell height multiply with items
                 return CGFloat(40 * (sections[indexPath.section].sectionData.expandableCellOptions.count))
             }
             

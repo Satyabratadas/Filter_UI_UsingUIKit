@@ -1,6 +1,6 @@
 //
-//  RangeSeekSlider.swift
-//  RangeSeekSlider
+//  TwoRangeSlider.swift
+//  TwoRangeSlider
 //
 //  Created by Satyabrata Das on 01/03/24.
 //
@@ -250,7 +250,7 @@ import UIKit
     // MARK: - private computed properties
 
     private var leftHandleAccessibilityElement: UIAccessibilityElement {
-        let element: RangeSeekSliderLeftElement = RangeSeekSliderLeftElement(accessibilityContainer: self)
+        let element: TwoRangeSliderLeftElement = TwoRangeSliderLeftElement(accessibilityContainer: self)
         element.isAccessibilityElement = true
         element.accessibilityLabel = minLabelAccessibilityLabel
         element.accessibilityHint = minLabelAccessibilityHint
@@ -261,7 +261,7 @@ import UIKit
     }
 
     private var rightHandleAccessibilityElement: UIAccessibilityElement {
-        let element: RangeSeekSliderRightElement = RangeSeekSliderRightElement(accessibilityContainer: self)
+        let element: TwoRangeSliderRightElement = TwoRangeSliderRightElement(accessibilityContainer: self)
         element.isAccessibilityElement = true
         element.accessibilityLabel = maxLabelAccessibilityLabel
         element.accessibilityHint = maxLabelAccessibilityHint
@@ -379,7 +379,7 @@ import UIKit
 
     // MARK: - open methods
 
-    /// When subclassing **RangeSeekSlider** and setting each item in **setupStyle()**, the design is reflected in Interface Builder as well.
+    /// When subclassing **TwoRangeSlider** and setting each item in **setupStyle()**, the design is reflected in Interface Builder as well.
     open func setupStyle() {}
 
 
@@ -701,9 +701,9 @@ import UIKit
 }
 
 
-// MARK: - RangeSeekSliderLeftElement
+// MARK: - TwoRangeSliderLeftElement
 
-private final class RangeSeekSliderLeftElement: UIAccessibilityElement {
+private final class TwoRangeSliderLeftElement: UIAccessibilityElement {
 
     override func accessibilityIncrement() {
         guard let slider = accessibilityContainer as? TwoRangeSlider else { return }
@@ -719,9 +719,9 @@ private final class RangeSeekSliderLeftElement: UIAccessibilityElement {
 }
 
 
-// MARK: - RangeSeekSliderRightElement
+// MARK: - TwoRangeSliderRightElement
 
-private final class RangeSeekSliderRightElement: UIAccessibilityElement {
+private final class TwoRangeSliderRightElement: UIAccessibilityElement {
 
     override func accessibilityIncrement() {
         guard let slider = accessibilityContainer as? TwoRangeSlider else { return }

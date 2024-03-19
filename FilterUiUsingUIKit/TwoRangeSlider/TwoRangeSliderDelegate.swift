@@ -1,6 +1,6 @@
 //
 //  TwoRangeSliderDelegate.swift
-//  RangeSeekSlider
+//  TwoRangeSlider
 //
 //  Created by Satyabrata Das on 01/03/24.
 //
@@ -9,36 +9,36 @@ import CoreGraphics
 
 public protocol TwoRangeSliderDelegate: AnyObject {
 
-    /// Called when the RangeSeekSlider values are changed
+    /// Called when the TwoRangeSlider values are changed
     ///
     /// - Parameters:
-    ///   - slider: RangeSeekSlider
+    ///   - slider: TwoRangeSlider
     ///   - minValue: minimum value
     ///   - maxValue: maximum value
     func rangeSeekSlider(_ slider: TwoRangeSlider, didChange minValue: CGFloat, maxValue: CGFloat)
 
-    /// Called when the user has started interacting with the RangeSeekSlider
+    /// Called when the user has started interacting with the TwoRangeSlider
     ///
-    /// - Parameter slider: RangeSeekSlider
+    /// - Parameter slider: TwoRangeSlider
     func didStartTouches(in slider: TwoRangeSlider)
 
-    /// Called when the user has finished interacting with the RangeSeekSlider
+    /// Called when the user has finished interacting with the TwoRangeSlider
     ///
-    /// - Parameter slider: RangeSeekSlider
+    /// - Parameter slider: TwoRangeSlider
     func didEndTouches(in slider: TwoRangeSlider)
 
-    /// Called when the RangeSeekSlider values are changed. A return `String?` Value is displayed on the `minLabel`.
+    /// Called when the TwoRangeSlider values are changed. A return `String?` Value is displayed on the `minLabel`.
     ///
     /// - Parameters:
-    ///   - slider: RangeSeekSlider
+    ///   - slider: TwoRangeSlider
     ///   - minValue: minimum value
     /// - Returns: String to be replaced
     func rangeSeekSlider(_ slider: TwoRangeSlider, stringForMinValue minValue: CGFloat) -> String?
 
-    /// Called when the RangeSeekSlider values are changed. A return `String?` Value is displayed on the `maxLabel`.
+    /// Called when the TwoRangeSlider values are changed. A return `String?` Value is displayed on the `maxLabel`.
     ///
     /// - Parameters:
-    ///   - slider: RangeSeekSlider
+    ///   - slider: TwoRangeSlider
     ///   - maxValue: maximum value
     /// - Returns: String to be replaced
     func rangeSeekSlider(_ slider: TwoRangeSlider, stringForMaxValue: CGFloat) -> String?

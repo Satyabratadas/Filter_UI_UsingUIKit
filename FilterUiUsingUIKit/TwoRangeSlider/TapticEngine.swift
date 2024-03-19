@@ -1,6 +1,6 @@
 //
 //  TapticEngine.swift
-//  RangeSeekSlider
+//  TwoRangeSlider
 //
 //  Created by Satyabrata Das on 01/03/24.
 //

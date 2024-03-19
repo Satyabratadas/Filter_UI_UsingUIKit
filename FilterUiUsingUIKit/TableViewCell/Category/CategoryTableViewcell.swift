@@ -15,7 +15,7 @@ class CategoryTableViewcell: UITableViewCell,UITableViewDelegate,UITableViewData
    
 
     @IBOutlet weak var categoryListTableview: UITableView!
-     var delegate: CategoryFilter?
+    var delegate: CategoryFilter?
     var categoryItems : [String]? = nil
     var selectedRow = [Int]()
     let cellIdentifier = "TableViewCell"
