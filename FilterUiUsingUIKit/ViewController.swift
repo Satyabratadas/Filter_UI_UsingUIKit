@@ -30,6 +30,11 @@ extension ViewController {
         
     }
     
+    enum ShapeType : String{
+        case Rectangle
+        case Square
+    }
+    
     struct SectionCellIndexpath : Equatable, Hashable{
         var row = [Int]()
         var section : CellType
@@ -67,7 +72,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     var sortBy = ["A-Z", "Z-A"]
     var color = ["Red", "Green", "Blue"]
     var shape = ["Square", "Rectangle"]
-    var size = ["Regular", "Large", "Medium"]
+//    var size = ["Regular", "Large", "Medium"]
+    var selectedShape : String? = nil
+//    var size = []
+    var squareSize = ["Regular"]
+    var rectangleSize = ["Extra Large", "Large", "Medium"]
+    
     
     var sections = [FilterTitle]()
     //var selectedCells : [SectionCellIndexpath:Any] = [:]
@@ -95,7 +105,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Shape", expandableCellOptions: shape, isExpandabled: false), index: SectionCellIndexpath( section: .shape)))
         
-        sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Size", expandableCellOptions: size, isExpandabled: false), index: SectionCellIndexpath( section: .size)))
+        sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Size", expandableCellOptions: [], isExpandabled: false), index: SectionCellIndexpath( section: .size)))
+        
+        
         
         self.filtersTableView.register(UINib(nibName: tapableCellIdentifier, bundle: nil), forCellReuseIdentifier: tapableCellIdentifier)
         self.filtersTableView.register(UINib(nibName: sliderCellIdentifier, bundle: nil), forCellReuseIdentifier: sliderCellIdentifier)
@@ -126,6 +138,34 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             for row in  selected.index.row{
                 print(selected.sectionData.expandableCellOptions[row])
             }
+        }
+    }
+    
+    
+    ///  After selected shape then size will be represent regarding to shape
+    private func updateExpandableOptions(forSection section: CellType, withNewOptions options: [String], shapeType: ShapeType) {
+        // Find the index of the section in the sections array
+        if let sectionIndex = sections.firstIndex(where: { $0.index.section == section }) {
+            // Update the expandable options for the section
+            sections[sectionIndex].sectionData.expandableCellOptions = options
+            if shapeType == .Rectangle{
+//                self.sections.
+//                let data = sections[section]
+//                if  (data.index.row.contains(indexPath.row)) {
+//                    cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_checkBox")
+//                }else{
+//                    cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_unCheckBox")
+//                }
+            }else{
+//                if  (data.index.row.contains(indexPath.row)) {
+//                    cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_checkBox")
+//                }else{
+//                    cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_unCheckBox")
+//                }
+            }
+            // Reload the section to reflect the changes
+//            self.filtersTableView.reloadSections(IndexSet(integer: sectionIndex), with: .automatic)
+            self.filtersTableView.reloadData()
         }
     }
 }
@@ -344,6 +384,19 @@ extension ViewController{
             }else{
                 sections[indexPath.section].index.row.append(indexPath.row)
             }
+        case .shape:
+            let selectedItem = sections[indexPath.section].sectionData.expandableCellOptions[indexPath.row]// Assuming sectionData holds the items for each section
+                print("Selected item:", selectedItem)
+            switch ShapeType(rawValue: selectedItem){
+            case .Rectangle:
+                self.updateExpandableOptions(forSection: .size, withNewOptions: rectangleSize, shapeType: .Rectangle)
+            case .Square:
+                self.updateExpandableOptions(forSection: .size, withNewOptions: squareSize, shapeType: .Square)
+            default :
+                print("not selected type")
+//                self.updateExpandableOptions(forSection: .size, withNewOptions: [], shapeType: )
+            }
+            sections[indexPath.section].index.row = [indexPath.row]
         default:
             sections[indexPath.section].index.row = [indexPath.row]
         }
