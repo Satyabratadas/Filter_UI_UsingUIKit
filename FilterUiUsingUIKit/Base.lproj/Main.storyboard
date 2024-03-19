@@ -70,7 +70,7 @@
                                     <constraint firstItem="N0m-R3-zMI" firstAttribute="top" secondItem="hR7-y6-nKu" secondAttribute="top" constant="8" id="myW-Nn-Xw7"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZFZ-l0-kjJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZFZ-l0-kjJ">
                                 <rect key="frame" x="25" y="91" width="343" height="667"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
