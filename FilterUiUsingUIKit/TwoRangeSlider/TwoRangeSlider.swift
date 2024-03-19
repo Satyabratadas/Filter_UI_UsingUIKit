@@ -7,7 +7,7 @@
 
 import UIKit
 
-@IBDesignable open class RangeSeekSlider: UIControl {
+@IBDesignable open class TwoRangeSlider: UIControl {
 
     // MARK: - initializers
 
@@ -23,7 +23,7 @@ import UIKit
         setup()
     }
 
-    public convenience init(frame: CGRect = .zero, completion: ((RangeSeekSlider) -> Void)? = nil) {
+    public convenience init(frame: CGRect = .zero, completion: ((TwoRangeSlider) -> Void)? = nil) {
         self.init(frame: frame)
         completion?(self)
     }
@@ -31,7 +31,7 @@ import UIKit
 
     // MARK: - open stored properties
 
-    open weak var delegate: RangeSeekSliderDelegate?
+    open weak var delegate: TwoRangeSliderDelegate?
 
     /// The minimum possible value to select in the range
     @IBInspectable open var minValue: CGFloat = 0.0 {
@@ -706,13 +706,13 @@ import UIKit
 private final class RangeSeekSliderLeftElement: UIAccessibilityElement {
 
     override func accessibilityIncrement() {
-        guard let slider = accessibilityContainer as? RangeSeekSlider else { return }
+        guard let slider = accessibilityContainer as? TwoRangeSlider else { return }
         slider.selectedMinValue += slider.step
         accessibilityValue = slider.minLabel.string as? String
     }
 
     override func accessibilityDecrement() {
-        guard let slider = accessibilityContainer as? RangeSeekSlider else { return }
+        guard let slider = accessibilityContainer as? TwoRangeSlider else { return }
         slider.selectedMinValue -= slider.step
         accessibilityValue = slider.minLabel.string as? String
     }
@@ -724,14 +724,14 @@ private final class RangeSeekSliderLeftElement: UIAccessibilityElement {
 private final class RangeSeekSliderRightElement: UIAccessibilityElement {
 
     override func accessibilityIncrement() {
-        guard let slider = accessibilityContainer as? RangeSeekSlider else { return }
+        guard let slider = accessibilityContainer as? TwoRangeSlider else { return }
         slider.selectedMaxValue += slider.step
         slider.refresh()
         accessibilityValue = slider.maxLabel.string as? String
     }
 
     override func accessibilityDecrement() {
-        guard let slider = accessibilityContainer as? RangeSeekSlider else { return }
+        guard let slider = accessibilityContainer as? TwoRangeSlider else { return }
         slider.selectedMaxValue -= slider.step
         slider.refresh()
         accessibilityValue = slider.maxLabel.string as? String
