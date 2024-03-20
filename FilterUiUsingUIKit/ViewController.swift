@@ -67,7 +67,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     let tapableCellIdentifier = "TableViewCellForTapableSection"
     let sliderCellIdentifier = "FilterPriceTableViewCell"
     let cellIdentifier = "TableViewCell"
-    let categoryCell = "CategoryTableViewcell"
+    let categoryCellIdentifier = "CategoryTableViewcell"
     var category = ["Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
     var sortBy = ["A-Z", "Z-A"]
     var color = ["Red", "Green", "Blue"]
@@ -79,6 +79,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     
     var sections = [FilterTitle]()
+    var selectedFilters : [String] = []
+    let categogoryCell = CategoryTableViewcell()
     //var selectedCells : [SectionCellIndexpath:Any] = [:]
 //    var selectedIndexPathRow: Int?    //not use currently check later
     var initialCellCount = 10
@@ -111,7 +113,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         self.filtersTableView.register(UINib(nibName: tapableCellIdentifier, bundle: nil), forCellReuseIdentifier: tapableCellIdentifier)
         self.filtersTableView.register(UINib(nibName: sliderCellIdentifier, bundle: nil), forCellReuseIdentifier: sliderCellIdentifier)
         self.filtersTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-        self.filtersTableView.register(UINib(nibName: categoryCell, bundle: nil), forCellReuseIdentifier: categoryCell)
+        self.filtersTableView.register(UINib(nibName: categoryCellIdentifier, bundle: nil), forCellReuseIdentifier: categoryCellIdentifier)
         self.filtersTableView.delegate = self
         self.filtersTableView.dataSource = self
         self.filtersTableView.separatorStyle = .none
@@ -125,6 +127,18 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
     @IBAction func clearallFilterBtn(_ sender: UIButton) {
         print("Clear all Pressed")
+        for section in sections{
+            for row in  section.index.row{
+                if  self.selectedFilters.count > 0{
+                    self.selectedFilters.remove(at: row)
+                }
+                self.sections[section.index.section.rawValue].index.row = []
+            }
+        }
+        print("selected Filters \(self.selectedFilters)")
+        self.filtersTableView.reloadData()
+        
+        
     }
     @IBAction func cancelBtn(_ sender: UIButton) {
         print("Cancel Pressed")
@@ -135,12 +149,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         for selected in sections {
             for row in  selected.index.row{
-                print(selected.sectionData.expandableCellOptions[row])
+                self.selectedFilters.append(selected.sectionData.expandableCellOptions[row])
             }
         }
+        print("selected Filters \(self.selectedFilters)")
     }
-    
-    
     ///  After selected shape then size will be represent regarding to shape
     private func updateExpandableOptions(forSection section: CellType, withNewOptions options: [String], shapeType: ShapeType) {
         // Find the index of the section in the sections array
@@ -173,8 +186,6 @@ extension ViewController{
             }else{
                 return 0
             }
-            
-            
         default:
             
             if section.sectionData.isExpandabled {
@@ -182,7 +193,6 @@ extension ViewController{
             }else {
                 return 0
             }
-            
         }
 
     }
@@ -211,12 +221,14 @@ extension ViewController{
     
     private func tableViewCategory(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: categoryCell, for: indexPath) as! CategoryTableViewcell
+        let cell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier, for: indexPath) as! CategoryTableViewcell
         
         
         let data = sections[indexPath.section]
         cell.categoryItems = data.sectionData.expandableCellOptions
         cell.delegate = self
+        cell.selectedRow = data.index.row.first
+        cell.categoryListTableview.reloadData()
         return cell
     }
     
@@ -377,7 +389,6 @@ extension ViewController{
                 self.updateExpandableOptions(forSection: .size, withNewOptions: squareSize, shapeType: .Square)
             default :
                 print("not selected type")
-//                self.updateExpandableOptions(forSection: .size, withNewOptions: [], shapeType: )
             }
             
             self.sections[CellType.size.rawValue].index.row = []
@@ -434,9 +445,11 @@ extension ViewController{
 }
 
 extension ViewController : CategoryFilter{
-    func selectedCategoryFilter(selectedRow: [Int]?, section: Int?) {
+    
+    
+    func selectedCategoryFilter(selectedRow: Int?, section: Int?) {
         if let selectedRow = selectedRow, let section = section{
-            sections[section].index.row = selectedRow
+            sections[section].index.row = [selectedRow]
         }
     }
 }
