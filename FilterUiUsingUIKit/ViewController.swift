@@ -33,7 +33,6 @@ extension ViewController {
     enum ShapeType : String{
         case Rectangle
         case Square
-        case none
     }
     
     struct SectionCellIndexpath : Equatable, Hashable{
@@ -376,8 +375,6 @@ extension ViewController{
                 self.updateExpandableOptions(forSection: .size, withNewOptions: rectangleSize, shapeType: .Rectangle)
             case .Square:
                 self.updateExpandableOptions(forSection: .size, withNewOptions: squareSize, shapeType: .Square)
-            case nil:
-                self.updateExpandableOptions(forSection: .size, withNewOptions: [], shapeType: .none)
             default :
                 print("not selected type")
 //                self.updateExpandableOptions(forSection: .size, withNewOptions: [], shapeType: )
