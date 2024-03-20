@@ -25,8 +25,14 @@ extension ViewController {
         case price
         case sortedBy
         case color
+        case shape
         case size
         
+    }
+    
+    enum ShapeType : String{
+        case Rectangle
+        case Square
     }
     
     struct SectionCellIndexpath : Equatable, Hashable{
@@ -43,7 +49,7 @@ extension ViewController {
 }
 
 
-class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, CGFilterPriceTableViewCellDelegate{
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate, FilterPriceTableViewCellDelegate{
     
    
     
@@ -59,12 +65,20 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     @IBOutlet weak var filtersTableView: UITableView!
     @IBOutlet weak var applyBtn: UIButton!
     let tapableCellIdentifier = "TableViewCellForTapableSection"
-    let sliderCellIdentifier = "CGFilterPriceTableViewCell"
+    let sliderCellIdentifier = "FilterPriceTableViewCell"
     let cellIdentifier = "TableViewCell"
+    let categoryCell = "CategoryTableViewcell"
     var category = ["Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
     var sortBy = ["A-Z", "Z-A"]
     var color = ["Red", "Green", "Blue"]
-    var size = ["Regular", "Large", "Medium"]
+    var shape = ["Square", "Rectangle"]
+//    var size = ["Regular", "Large", "Medium"]
+    var selectedShape : String? = nil
+//    var size = []
+    var squareSize = ["Regular"]
+    var rectangleSize = ["Extra Large", "Large", "Medium"]
+    
+    
     var sections = [FilterTitle]()
     //var selectedCells : [SectionCellIndexpath:Any] = [:]
 //    var selectedIndexPathRow: Int?    //not use currently check later
@@ -89,11 +103,16 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Color", expandableCellOptions: color, isExpandabled: false), index: SectionCellIndexpath( section: .color)))
         
-        sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Size", expandableCellOptions: size, isExpandabled: false), index: SectionCellIndexpath( section: .size)))
+        sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Shape", expandableCellOptions: shape, isExpandabled: false), index: SectionCellIndexpath( section: .shape)))
+        
+        sections.append(FilterTitle(sectionData: SectionData(mainCellTitle: "Size", expandableCellOptions: [], isExpandabled: false), index: SectionCellIndexpath( section: .size)))
+        
+        
         
         self.filtersTableView.register(UINib(nibName: tapableCellIdentifier, bundle: nil), forCellReuseIdentifier: tapableCellIdentifier)
         self.filtersTableView.register(UINib(nibName: sliderCellIdentifier, bundle: nil), forCellReuseIdentifier: sliderCellIdentifier)
         self.filtersTableView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+        self.filtersTableView.register(UINib(nibName: categoryCell, bundle: nil), forCellReuseIdentifier: categoryCell)
         self.filtersTableView.delegate = self
         self.filtersTableView.dataSource = self
         self.filtersTableView.separatorStyle = .none
@@ -121,6 +140,34 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             }
         }
     }
+    
+    
+    ///  After selected shape then size will be represent regarding to shape
+    private func updateExpandableOptions(forSection section: CellType, withNewOptions options: [String], shapeType: ShapeType) {
+        // Find the index of the section in the sections array
+        if let sectionIndex = sections.firstIndex(where: { $0.index.section == section }) {
+            // Update the expandable options for the section
+            sections[sectionIndex].sectionData.expandableCellOptions = options
+            if shapeType == .Rectangle{
+//                self.sections.
+//                let data = sections[section]
+//                if  (data.index.row.contains(indexPath.row)) {
+//                    cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_checkBox")
+//                }else{
+//                    cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_unCheckBox")
+//                }
+            }else{
+//                if  (data.index.row.contains(indexPath.row)) {
+//                    cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_checkBox")
+//                }else{
+//                    cell.typeofSelectedBtn.image = UIImage(named: "COVID_Address_unCheckBox")
+//                }
+            }
+            // Reload the section to reflect the changes
+//            self.filtersTableView.reloadSections(IndexSet(integer: sectionIndex), with: .automatic)
+            self.filtersTableView.reloadData()
+        }
+    }
 }
 
 
@@ -137,21 +184,14 @@ extension ViewController{
         
         switch section.index.section {
         case .price: return 1
-            /// check tomorrow
-//        case .categories:
-//                    if section.sectionData.isExpandabled {
-//                        if section.sectionData.expandableCellOptions.count > initialCellCount {
-//                            // If there are more than 10 cells, return 10 initially
-//                            return initialCellCount
-//                        } else {
-//                            // If there are 10 or fewer cells, return all cells
-//                            return section.sectionData.expandableCellOptions.count
-//                        }
-//                    } else {
-//                        // If not expandable, return all cells
-////                        return section.sectionData.expandableCellOptions.count
-//                        return 0
-//                    }
+        case .categories:
+            if section.sectionData.isExpandabled {
+                return 1
+            }else{
+                return 0
+            }
+            
+            
         default:
             
             if section.sectionData.isExpandabled {
@@ -176,6 +216,8 @@ extension ViewController{
             return self.tableViewSortedBy(tableView, cellForRowAt: indexPath)
         case .color :
             return self.tableViewColor(tableView, cellForRowAt: indexPath)
+        case .shape:
+            return self.tableViewShape(tableView, cellForRowAt: indexPath)
         case .size :
             return self.tableViewSize(tableView, cellForRowAt: indexPath)
         default:
@@ -186,27 +228,18 @@ extension ViewController{
     
     private func tableViewCategory(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
-       
+        let cell = tableView.dequeueReusableCell(withIdentifier: categoryCell, for: indexPath) as! CategoryTableViewcell
+        
         
         let data = sections[indexPath.section]
-        let title = data.sectionData.expandableCellOptions[indexPath.row]
-        
-        cell.sectionCellName.text = title
-        
-        if  indexPath.row == data.index.row.first {
-            cell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
-        }else{
-            cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
-        }
-        cell.selectionStyle = .none
-        
+        cell.categoryItems = data.sectionData.expandableCellOptions
+        cell.delegate = self
         return cell
     }
     
     private func tableViewPrice(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: sliderCellIdentifier, for: indexPath) as! CGFilterPriceTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: sliderCellIdentifier, for: indexPath) as! FilterPriceTableViewCell
         
         cell.delegate = self
         cell.setPrice(minPrice: 0, maxPrice: 5000)
@@ -219,8 +252,6 @@ extension ViewController{
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
         let data = sections[indexPath.section]
         let title = data.sectionData.expandableCellOptions[indexPath.row]
-        
-        
         cell.sectionCellName.text = title
 
         if  indexPath.row == data.index.row.first {
@@ -239,6 +270,22 @@ extension ViewController{
         let title = data.sectionData.expandableCellOptions[indexPath.row]
         cell.sectionCellName.text = title
         
+        if  indexPath.row == data.index.row.first {
+            cell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
+        }else{
+            cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
+        }
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    private func tableViewShape(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
+        let data = sections[indexPath.section]
+        let title = data.sectionData.expandableCellOptions[indexPath.row]
+        cell.sectionCellName.text = title
+
         if  indexPath.row == data.index.row.first {
             cell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
         }else{
@@ -276,8 +323,6 @@ extension ViewController{
         headerCell.cellHeaderTxt.text = title
         headerCell.dropDownImage.image = UIImage(named: "down")
         headerCell.seperatorView.layer.backgroundColor = UIColor.lightGray.cgColor
-//        headerCell.backgroundColor = .cyan
-        
         if sections[section].sectionData.isExpandabled {
             headerCell.dropDownImage.image = UIImage(named: "up")
         }else {
@@ -339,6 +384,19 @@ extension ViewController{
             }else{
                 sections[indexPath.section].index.row.append(indexPath.row)
             }
+        case .shape:
+            let selectedItem = sections[indexPath.section].sectionData.expandableCellOptions[indexPath.row]// Assuming sectionData holds the items for each section
+                print("Selected item:", selectedItem)
+            switch ShapeType(rawValue: selectedItem){
+            case .Rectangle:
+                self.updateExpandableOptions(forSection: .size, withNewOptions: rectangleSize, shapeType: .Rectangle)
+            case .Square:
+                self.updateExpandableOptions(forSection: .size, withNewOptions: squareSize, shapeType: .Square)
+            default :
+                print("not selected type")
+//                self.updateExpandableOptions(forSection: .size, withNewOptions: [], shapeType: )
+            }
+            sections[indexPath.section].index.row = [indexPath.row]
         default:
             sections[indexPath.section].index.row = [indexPath.row]
         }
@@ -363,23 +421,38 @@ extension ViewController{
         return UIView(frame: .zero)
     }
     
-    /// check tomorrow
-    /*
-     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-             let sectionData = sections[indexPath.section]
-             
-             // Check if it's the last cell and the section is expandable
-             if indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1 && sectionData.sectionData.isExpandabled {
-                 // Load more cells if available
-                 let remainingCells = sectionData.sectionData.expandableCellOptions.count - initialCellCount
-                 if remainingCells > 0 {
-                     initialCellCount += min(remainingCells, 10) // Load next 10 cells or remaining cells if less than 10
-                     tableView.reloadData() // Reload table view to display new cells
-                 }
-             }
-         }
-     */
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if indexPath.section == 0{
+            return nil
+        }else{
+            return indexPath
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            if sections[indexPath.section].sectionData.expandableCellOptions.count > 10{
+                
+                // Set a custom height for cells in the "categories" section if item greater than 10
+                return 300
+            }else{
+                //other wise return cell height multiply with items
+                return CGFloat(40 * (sections[indexPath.section].sectionData.expandableCellOptions.count))
+            }
+            
+        } else {
+            return UITableView.automaticDimension // Use default height for cells in other sections
+        }
+    }
     
   
+}
+
+extension ViewController : CategoryFilter{
+    func selectedCategoryFilter(selectedRow: [Int]?, section: Int?) {
+        if let selectedRow = selectedRow, let section = section{
+            sections[section].index.row = selectedRow
+        }
+    }
 }
 

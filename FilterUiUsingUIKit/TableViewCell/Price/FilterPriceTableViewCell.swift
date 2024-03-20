@@ -1,5 +1,5 @@
 //
-//  CGFilterPriceTableViewCell.swift
+//  FilterPriceTableViewCell.swift
 //  Price
 //
 //  Created by Satyabrata Das on 01/03/24.
@@ -7,33 +7,27 @@
 
 import UIKit
 
-protocol CGFilterCheckBoxTableViewCellDelegate {
-//    
-//    func loadIcon(caption :CGFilterSectionType, data : B2CCategoryTemplateSearchFilterDataModel , arrSelectedData : [CGFilterSectionType : [B2CCategoryTemplateSearchFilterDataModel]?])
-    
+protocol FilterCheckBoxTableViewCellDelegate {
     
 }
 
-extension CGFilterCheckBoxTableViewCellDelegate {
-    
-//    func loadIcon(caption :CGFilterSectionType, data : B2CCategoryTemplateSearchFilterDataModel , arrSelectedData : [CGFilterSectionType : [B2CCategoryTemplateSearchFilterDataModel]?]){
-//        
-//    }
+extension FilterCheckBoxTableViewCellDelegate {
+
 }
 
-protocol CGFilterPriceTableViewCellDelegate : NSObjectProtocol {
+protocol FilterPriceTableViewCellDelegate : NSObjectProtocol {
     
     func cgFilterPriceTableViewCellDelegatePriceChange(minSelectedValue:Int , maxSelectedValue:Int)
     
 }
 
 
-class CGFilterPriceTableViewCell: UITableViewCell  {
+class FilterPriceTableViewCell: UITableViewCell  {
 
     @IBOutlet weak var minimumPriceView: UIView!
     @IBOutlet weak var maximumPriceView: UIView!
     @IBOutlet weak var sliderCellHeader: UILabel!
-    @IBOutlet  weak var rangeSliderCurrency      : RangeSeekSlider!
+    @IBOutlet  weak var rangeSliderCurrency      : TwoRangeSlider!
     @IBOutlet  weak var txtMinPrice              : UITextField!
     @IBOutlet  weak var txtMaxPrice              : UITextField!
     @IBOutlet  weak var lblLeftCurrencySymbol    : UILabel!
@@ -43,7 +37,7 @@ class CGFilterPriceTableViewCell: UITableViewCell  {
     var selectedMaxValue : Int = 0
     
     
-    weak var  delegate   : CGFilterPriceTableViewCellDelegate?
+    weak var  delegate   : FilterPriceTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -163,9 +157,9 @@ class CGFilterPriceTableViewCell: UITableViewCell  {
 
 }
 
-extension CGFilterPriceTableViewCell: RangeSeekSliderDelegate {
+extension FilterPriceTableViewCell: TwoRangeSliderDelegate {
 
-    func rangeSeekSlider(_ slider: RangeSeekSlider, didChange minValue: CGFloat, maxValue: CGFloat) {
+    func rangeSeekSlider(_ slider: TwoRangeSlider, didChange minValue: CGFloat, maxValue: CGFloat) {
         
         
         
@@ -180,17 +174,17 @@ extension CGFilterPriceTableViewCell: RangeSeekSliderDelegate {
 
     }
 
-    func didStartTouches(in slider: RangeSeekSlider) {
+    func didStartTouches(in slider: TwoRangeSlider) {
         print("did start touches")
     }
 
-    func didEndTouches(in slider: RangeSeekSlider) {
+    func didEndTouches(in slider: TwoRangeSlider) {
         print("did end touches")
         self.delegate?.cgFilterPriceTableViewCellDelegatePriceChange(minSelectedValue: self.selectedMinValue, maxSelectedValue: self.selectedMaxValue)
     }
 }
 
-extension CGFilterPriceTableViewCell: UITextFieldDelegate {
+extension FilterPriceTableViewCell: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         

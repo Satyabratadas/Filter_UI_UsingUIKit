@@ -1,13 +1,13 @@
 //
-//  RangeSeekSlider.swift
-//  RangeSeekSlider
+//  TwoRangeSlider.swift
+//  TwoRangeSlider
 //
 //  Created by Satyabrata Das on 01/03/24.
 //
 
 import UIKit
 
-@IBDesignable open class RangeSeekSlider: UIControl {
+@IBDesignable open class TwoRangeSlider: UIControl {
 
     // MARK: - initializers
 
@@ -23,7 +23,7 @@ import UIKit
         setup()
     }
 
-    public convenience init(frame: CGRect = .zero, completion: ((RangeSeekSlider) -> Void)? = nil) {
+    public convenience init(frame: CGRect = .zero, completion: ((TwoRangeSlider) -> Void)? = nil) {
         self.init(frame: frame)
         completion?(self)
     }
@@ -31,7 +31,7 @@ import UIKit
 
     // MARK: - open stored properties
 
-    open weak var delegate: RangeSeekSliderDelegate?
+    open weak var delegate: TwoRangeSliderDelegate?
 
     /// The minimum possible value to select in the range
     @IBInspectable open var minValue: CGFloat = 0.0 {
@@ -250,7 +250,7 @@ import UIKit
     // MARK: - private computed properties
 
     private var leftHandleAccessibilityElement: UIAccessibilityElement {
-        let element: RangeSeekSliderLeftElement = RangeSeekSliderLeftElement(accessibilityContainer: self)
+        let element: TwoRangeSliderLeftElement = TwoRangeSliderLeftElement(accessibilityContainer: self)
         element.isAccessibilityElement = true
         element.accessibilityLabel = minLabelAccessibilityLabel
         element.accessibilityHint = minLabelAccessibilityHint
@@ -261,7 +261,7 @@ import UIKit
     }
 
     private var rightHandleAccessibilityElement: UIAccessibilityElement {
-        let element: RangeSeekSliderRightElement = RangeSeekSliderRightElement(accessibilityContainer: self)
+        let element: TwoRangeSliderRightElement = TwoRangeSliderRightElement(accessibilityContainer: self)
         element.isAccessibilityElement = true
         element.accessibilityLabel = maxLabelAccessibilityLabel
         element.accessibilityHint = maxLabelAccessibilityHint
@@ -379,7 +379,7 @@ import UIKit
 
     // MARK: - open methods
 
-    /// When subclassing **RangeSeekSlider** and setting each item in **setupStyle()**, the design is reflected in Interface Builder as well.
+    /// When subclassing **TwoRangeSlider** and setting each item in **setupStyle()**, the design is reflected in Interface Builder as well.
     open func setupStyle() {}
 
 
@@ -701,37 +701,37 @@ import UIKit
 }
 
 
-// MARK: - RangeSeekSliderLeftElement
+// MARK: - TwoRangeSliderLeftElement
 
-private final class RangeSeekSliderLeftElement: UIAccessibilityElement {
+private final class TwoRangeSliderLeftElement: UIAccessibilityElement {
 
     override func accessibilityIncrement() {
-        guard let slider = accessibilityContainer as? RangeSeekSlider else { return }
+        guard let slider = accessibilityContainer as? TwoRangeSlider else { return }
         slider.selectedMinValue += slider.step
         accessibilityValue = slider.minLabel.string as? String
     }
 
     override func accessibilityDecrement() {
-        guard let slider = accessibilityContainer as? RangeSeekSlider else { return }
+        guard let slider = accessibilityContainer as? TwoRangeSlider else { return }
         slider.selectedMinValue -= slider.step
         accessibilityValue = slider.minLabel.string as? String
     }
 }
 
 
-// MARK: - RangeSeekSliderRightElement
+// MARK: - TwoRangeSliderRightElement
 
-private final class RangeSeekSliderRightElement: UIAccessibilityElement {
+private final class TwoRangeSliderRightElement: UIAccessibilityElement {
 
     override func accessibilityIncrement() {
-        guard let slider = accessibilityContainer as? RangeSeekSlider else { return }
+        guard let slider = accessibilityContainer as? TwoRangeSlider else { return }
         slider.selectedMaxValue += slider.step
         slider.refresh()
         accessibilityValue = slider.maxLabel.string as? String
     }
 
     override func accessibilityDecrement() {
-        guard let slider = accessibilityContainer as? RangeSeekSlider else { return }
+        guard let slider = accessibilityContainer as? TwoRangeSlider else { return }
         slider.selectedMaxValue -= slider.step
         slider.refresh()
         accessibilityValue = slider.maxLabel.string as? String
