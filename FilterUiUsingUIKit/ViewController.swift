@@ -72,21 +72,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         print("maxvalue\(maxSelectedValue), minvalue\(minSelectedValue)")
         self.sections[CellType.price.rawValue].sectionData.minValue = minSelectedValue
         self.sections[CellType.price.rawValue].sectionData.maxValue = maxSelectedValue
-//        if minSelectedValue != self.minValue{
-//            self.updatedMinValue = minSelectedValue
-//            self.updatedMaxValue = self.maxValue
-//        }else if maxSelectedValue != self.maxValue{
-//            self.updatedMaxValue = maxSelectedValue
-//            self.updatedMinValue = self.minValue
-//        }else{
-//            self.updatedMinValue = self.minValue
-//            self.updatedMaxValue = self.maxValue
-//        }
-//        print("updatedminvalue:- \(self.updatedMinValue), updatedMaxvalue:- \(self.updatedMaxValue)")
-        /*   // check after commit
-        self.minValue = minSelectedValue
-        self.maxValue = maxSelectedValue
-         */
+
     }
     
     
@@ -99,16 +85,11 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     let sliderCellIdentifier = "FilterPriceTableViewCell"
     let cellIdentifier = "TableViewCell"
     let categoryCellIdentifier = "CategoryTableViewcell"
-//    var priceData = PriceCellData(minValue: 0, maxValue: 5000)
     var category = ["Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark","Banner", "Canvas Photo", "Bookmark", "Bookmark","Banner", "Canvas Photo", "Bookmark"]
     var sortBy = ["A-Z", "Z-A"]
     var color = ["Red", "Green", "Blue"]
     var shape = ["Square", "Rectangle", "Panoramic"]
     var orientation = ["Vertical", "Horizontal"]
-    var minValue : Int = 0
-    var maxValue : Int = 5000
-    var updatedMinValue : Int = 0
-    var updatedMaxValue : Int = 5000
     var squareSize = ["2 x 2","4 x 4"]
     var rectangleVerticalSize = ["3 x 2", "5 x 3"]
     var rectangleHorizontalSize = ["2 x 3", "3 x 5"]
@@ -352,20 +333,9 @@ extension ViewController{
        
         cell.delegate = self
         cell.setPrice(minPrice: sections[indexPath.section].sectionData.minValue, maxPrice: sections[indexPath.section].sectionData.maxValue)
-//        cell.setPriceMaxValue(CGFloat(sections[indexPath.section].sectionData.maxValue))
-//        cell.setPriceMinValue(CGFloat(sections[indexPath.section].sectionData.minValue))
-        
-//        if self.updatedMinValue != self.minValue{
-//            cell.setPriceMinValue(CGFloat(updatedMinValue))
-//        }else{
-//            cell.setPriceMinValue(CGFloat(self.minValue))
-//        }
-//        if self.updatedMaxValue != self.maxValue{
-//            cell.setPriceMaxValue(CGFloat(updatedMaxValue))
-//        }else{
-//            cell.setPriceMaxValue(CGFloat(self.maxValue))
-//        }
+
         cell.setSelectedPrice(minSelectedPrice: sections[indexPath.section].sectionData.minValue , maxSelectedPrice: sections[indexPath.section].sectionData.maxValue)
+        cell.setupSilder(minPrice: sections[indexPath.section].sectionData.minValue, maxPrice: sections[indexPath.section].sectionData.maxValue)
         return cell
     }
     
@@ -517,7 +487,8 @@ extension ViewController{
             sections[sender.section!].sectionData.isExpandabled = true
             sender.cell?.dropDownImage.image = UIImage(named: "down")
         }
-        self.filtersTableView.reloadSections(IndexSet(integer: sender.section ?? 0), with: .none)
+        self.filtersTableView.reloadData()
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
