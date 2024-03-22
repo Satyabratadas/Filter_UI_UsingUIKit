@@ -46,7 +46,7 @@ class FilterPriceTableViewCell: UITableViewCell  {
         self.minimumPriceView.layer.borderColor = UIColor.lightGray.cgColor
         self.maximumPriceView.layer.borderWidth = 1
         self.maximumPriceView.layer.borderColor = UIColor.lightGray.cgColor
-//        self.setupSilder()
+        self.setupSilder()
         
     }
 
@@ -56,9 +56,8 @@ class FilterPriceTableViewCell: UITableViewCell  {
         // Configure the view for the selected state
     }
     
-    func setupSilder(minPrice : Int?, maxPrice : Int?){
+    func setupSilder(){
         
-        guard let minPrice = minPrice, let maxPrice = maxPrice else { return }
 //        self.lblLeftCurrencySymbol.text = PARegionAPI().currencySymbol
 //        self.lblRightCurrencySymbol.text = PARegionAPI().currencySymbol
 
@@ -77,10 +76,7 @@ class FilterPriceTableViewCell: UITableViewCell  {
         self.rangeSliderCurrency.handleDiameter = 20.0
         
         self.rangeSliderCurrency.delegate = self
-        self.rangeSliderCurrency.minValue = CGFloat(minPrice)
-        self.rangeSliderCurrency.maxValue = CGFloat(maxPrice)
-        self.rangeSliderCurrency.selectedMinValue = CGFloat(minPrice)
-        self.rangeSliderCurrency.selectedMaxValue = CGFloat(maxPrice)
+        self.rangeSliderCurrency.minValue = 0.0
        
         self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1.0
         self.rangeSliderCurrency.lineHeight = 2.0

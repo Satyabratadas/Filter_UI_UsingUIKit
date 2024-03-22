@@ -335,7 +335,6 @@ extension ViewController{
         cell.setPrice(minPrice: sections[indexPath.section].sectionData.minValue, maxPrice: sections[indexPath.section].sectionData.maxValue)
 
         cell.setSelectedPrice(minSelectedPrice: sections[indexPath.section].sectionData.minValue , maxSelectedPrice: sections[indexPath.section].sectionData.maxValue)
-        cell.setupSilder(minPrice: sections[indexPath.section].sectionData.minValue, maxPrice: sections[indexPath.section].sectionData.maxValue)
         return cell
     }
     
