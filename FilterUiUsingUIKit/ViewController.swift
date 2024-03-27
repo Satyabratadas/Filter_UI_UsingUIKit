@@ -19,6 +19,8 @@ extension ViewController {
         var isExpandabled : Bool
         var minValue : Int = 0
         var maxValue : Int = 5000
+        var minSelectedValue : Int = 0
+        var maxSelectedValue : Int = 5000
     }
 //    
 //    struct PriceCellData{
@@ -70,8 +72,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     func cgFilterPriceTableViewCellDelegatePriceChange(minSelectedValue: Int, maxSelectedValue: Int) {
         print("maxvalue\(maxSelectedValue), minvalue\(minSelectedValue)")
-        self.sections[CellType.price.rawValue].sectionData.minValue = minSelectedValue
-        self.sections[CellType.price.rawValue].sectionData.maxValue = maxSelectedValue
+        self.sections[CellType.price.rawValue].sectionData.minSelectedValue = minSelectedValue
+        self.sections[CellType.price.rawValue].sectionData.maxSelectedValue = maxSelectedValue
 
     }
     
@@ -155,6 +157,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 self.updateExpandableOptionsForOrientation(forSection: .orientation, withNewOptions: [])
             case .size:
                 self.updateExpandableOptionsForSize(forSection: .size, withNewOptions: [])
+           
             default : break
             }
             for row in  section.index.row{
@@ -333,8 +336,8 @@ extension ViewController{
        
         cell.delegate = self
         cell.setPrice(minPrice: sections[indexPath.section].sectionData.minValue, maxPrice: sections[indexPath.section].sectionData.maxValue)
-
-        cell.setSelectedPrice(minSelectedPrice: sections[indexPath.section].sectionData.minValue , maxSelectedPrice: sections[indexPath.section].sectionData.maxValue)
+//        if
+        cell.setSelectedPrice(minSelectedPrice: sections[indexPath.section].sectionData.minSelectedValue , maxSelectedPrice: sections[indexPath.section].sectionData.maxSelectedValue)
         return cell
     }
     
