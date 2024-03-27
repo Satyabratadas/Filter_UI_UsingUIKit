@@ -17,9 +17,9 @@ extension ViewController {
         var mainCellTitle: String
         var expandableCellOptions: [String]
         var isExpandabled : Bool
-        var minValue : Int = 0
+        var minValue : Int = 1
         var maxValue : Int = 5000
-        var minSelectedValue : Int = 0
+        var minSelectedValue : Int = 1
         var maxSelectedValue : Int = 5000
     }
 //    
@@ -150,8 +150,9 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
     @IBAction func clearallFilterBtn(_ sender: UIButton) {
         print("Clear all Pressed")
+        self.sections[CellType.price.rawValue].sectionData.maxSelectedValue = self.sections[CellType.price.rawValue].sectionData.maxValue
+        self.sections[CellType.price.rawValue].sectionData.minSelectedValue = self.sections[CellType.price.rawValue].sectionData.minValue
         for section in sections{
-            print("section:- \(section.index.section)")
             switch CellType(rawValue: section.index.section.rawValue){
             case .orientation:
                 self.updateExpandableOptionsForOrientation(forSection: .orientation, withNewOptions: [])
@@ -161,13 +162,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             default : break
             }
             for row in  section.index.row{
-                print("selected filter count \(section.index.row.count)")
                 if  self.selectedFilters.count > 0{
                     self.selectedFilters.remove(at: row)
                 }
                 self.sections[section.index.section.rawValue].index.row = []
             }
         }
+        print("Selected Max Price \(self.sections[CellType.price.rawValue].sectionData.maxSelectedValue)")
+        print("Selected Min Price \(self.sections[CellType.price.rawValue].sectionData.minSelectedValue)")
         print("selected Filters \(self.selectedFilters)")
         self.filtersTableView.reloadData()
         
@@ -187,6 +189,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 self.selectedFilters.append(selected.sectionData.expandableCellOptions[row])
             }
         }
+        print("Selected Max Price \(self.sections[CellType.price.rawValue].sectionData.maxSelectedValue)")
+        print("Selected Min Price \(self.sections[CellType.price.rawValue].sectionData.minSelectedValue)")
         print("selected Filters \(self.selectedFilters)")
     }
     ///  After selected shape then orientation will be represent regarding to shape
@@ -338,6 +342,7 @@ extension ViewController{
         cell.setPrice(minPrice: sections[indexPath.section].sectionData.minValue, maxPrice: sections[indexPath.section].sectionData.maxValue)
 //        if
         cell.setSelectedPrice(minSelectedPrice: sections[indexPath.section].sectionData.minSelectedValue , maxSelectedPrice: sections[indexPath.section].sectionData.maxSelectedValue)
+        cell.rangeSliderCurrency.refresh()
         return cell
     }
     
