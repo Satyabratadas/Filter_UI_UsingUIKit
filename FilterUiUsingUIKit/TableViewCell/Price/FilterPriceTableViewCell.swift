@@ -58,7 +58,6 @@ class FilterPriceTableViewCell: UITableViewCell  {
     
     func setupSilder(){
         
-        
 //        self.lblLeftCurrencySymbol.text = PARegionAPI().currencySymbol
 //        self.lblRightCurrencySymbol.text = PARegionAPI().currencySymbol
 
@@ -78,12 +77,10 @@ class FilterPriceTableViewCell: UITableViewCell  {
         
         self.rangeSliderCurrency.delegate = self
         self.rangeSliderCurrency.minValue = 0.0
-       // self.rangeSliderCurrency.maxValue = 100.0
-        self.rangeSliderCurrency.selectedMinValue = 40.0
-        self.rangeSliderCurrency.selectedMaxValue = 60.0
        
         self.rangeSliderCurrency.selectedHandleDiameterMultiplier = 1.0
         self.rangeSliderCurrency.lineHeight = 2.0
+//        self.rangeSliderCurrency.refresh()
 
     }
     
@@ -215,18 +212,28 @@ extension FilterPriceTableViewCell: UITextFieldDelegate {
     private func textFieldAssign(_ textField : UITextField){
         
         if textField == self.txtMinPrice {
-        
-            if let number = NumberFormatter().number(from: textField.text ?? "0") {
-                let floatMin = CGFloat(truncating: number)
-                self.setPriceMinValue(floatMin)
+            
+            /// Check that if textfield is empty then autymetically reload last selected value
+            if ((textField.text?.isEmpty) != true){
+                if let number = NumberFormatter().number(from: textField.text ?? "0") {
+                    let floatMin = CGFloat(truncating: number)
+                    self.setPriceMinValue(floatMin)
+                }
+            }else{
+                self.setPriceMinValue(self.rangeSliderCurrency.selectedMinValue)
+                
             }
            
-            
         }else if textField == self.txtMaxPrice {
             
-            if let number = NumberFormatter().number(from: textField.text ?? "0") {
-                let floatMax = CGFloat(truncating: number)
-                self.setPriceMaxValue(floatMax)
+            /// Check that if textfield is empty then autymetically reload last selected value
+            if ((textField.text?.isEmpty) != true){
+                if let number = NumberFormatter().number(from: textField.text ?? "0") {
+                    let floatMax = CGFloat(truncating: number)
+                    self.setPriceMaxValue(floatMax)
+                }
+            }else{
+                self.setPriceMaxValue(self.rangeSliderCurrency.selectedMaxValue)
             }
         }
         

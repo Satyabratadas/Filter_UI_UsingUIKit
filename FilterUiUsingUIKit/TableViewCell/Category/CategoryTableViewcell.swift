@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CategoryFilter{
-    func selectedCategoryFilter(selectedRow: [Int]?, section: Int?)
+    func selectedCategoryFilter(selectedRow: Int?, section: Int?)
 }
 
 class CategoryTableViewcell: UITableViewCell,UITableViewDelegate,UITableViewDataSource {
@@ -17,7 +17,7 @@ class CategoryTableViewcell: UITableViewCell,UITableViewDelegate,UITableViewData
     @IBOutlet weak var categoryListTableview: UITableView!
     var delegate: CategoryFilter?
     var categoryItems : [String]? = nil
-    var selectedRow = [Int]()
+    var selectedRow : Int?
     let cellIdentifier = "TableViewCell"
     
     override func awakeFromNib() {
@@ -50,7 +50,7 @@ extension CategoryTableViewcell{
             let title = categoryItems[indexPath.row]
             cell.sectionCellName.text = title
             
-            if  indexPath.row == selectedRow.first{
+            if  indexPath.row == selectedRow{
                 cell.typeofSelectedBtn.image = UIImage(named: "radioBtnActive")
             }else{
                 cell.typeofSelectedBtn.image = UIImage(named: "radioBtnDeactive")
@@ -61,8 +61,9 @@ extension CategoryTableViewcell{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedRow = [indexPath.row]
-        delegate?.selectedCategoryFilter(selectedRow: self.selectedRow, section: indexPath.section)
+        self.selectedRow = indexPath.row
+            delegate?.selectedCategoryFilter(selectedRow: selectedRow, section: indexPath.section)
+        
         tableView.reloadData()
     }
 }

@@ -12,8 +12,6 @@
 		0B9B03D12BA092B40017195D /* FilterPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B03CE2BA092B40017195D /* FilterPriceTableViewCell.swift */; };
 		0B9B03D22BA092B40017195D /* FilterPriceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9B03CF2BA092B40017195D /* FilterPriceTableViewCell.xib */; };
 		0B9B03D42BA095A00017195D /* TapticEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B03D32BA095A00017195D /* TapticEngine.swift */; };
-		0B9B03D62BA32E460017195D /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B03D52BA32E460017195D /* SectionHeaderView.swift */; };
-		0B9B03D92BA32E730017195D /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9B03D82BA32E730017195D /* SectionHeaderView.xib */; };
 		0BBF276B2BA99F0A0082AF53 /* CategoryTableViewcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF276A2BA99F0A0082AF53 /* CategoryTableViewcell.xib */; };
 		0BBF276C2BA99F0A0082AF53 /* CategoryTableViewcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF27692BA99F0A0082AF53 /* CategoryTableViewcell.swift */; };
 		A33EF97A2B827A45003EFB6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33EF9792B827A45003EFB6F /* AppDelegate.swift */; };
@@ -34,8 +32,6 @@
 		0B9B03CE2BA092B40017195D /* FilterPriceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterPriceTableViewCell.swift; sourceTree = "<group>"; };
 		0B9B03CF2BA092B40017195D /* FilterPriceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilterPriceTableViewCell.xib; sourceTree = "<group>"; };
 		0B9B03D32BA095A00017195D /* TapticEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapticEngine.swift; sourceTree = "<group>"; };
-		0B9B03D52BA32E460017195D /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
-		0B9B03D82BA32E730017195D /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
 		0BBF27692BA99F0A0082AF53 /* CategoryTableViewcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewcell.swift; sourceTree = "<group>"; };
 		0BBF276A2BA99F0A0082AF53 /* CategoryTableViewcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewcell.xib; sourceTree = "<group>"; };
 		A33EF9762B827A45003EFB6F /* FilterUiUsingUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilterUiUsingUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,15 +78,6 @@
 			path = Price;
 			sourceTree = "<group>";
 		};
-		0B9B03D72BA32E4D0017195D /* SectionHeaderView */ = {
-			isa = PBXGroup;
-			children = (
-				0B9B03D52BA32E460017195D /* SectionHeaderView.swift */,
-				0B9B03D82BA32E730017195D /* SectionHeaderView.xib */,
-			);
-			path = SectionHeaderView;
-			sourceTree = "<group>";
-		};
 		0BBF27642BA999400082AF53 /* Category */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,7 +106,6 @@
 		A33EF9782B827A45003EFB6F /* FilterUiUsingUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				0B9B03D72BA32E4D0017195D /* SectionHeaderView */,
 				0B9B03CB2BA092660017195D /* TwoRangeSlider */,
 				A33EF98D2B827C16003EFB6F /* TableViewCell */,
 				A33EF9792B827A45003EFB6F /* AppDelegate.swift */,
@@ -226,7 +212,6 @@
 				0B9B03D22BA092B40017195D /* FilterPriceTableViewCell.xib in Resources */,
 				A33EF9812B827A45003EFB6F /* Main.storyboard in Resources */,
 				A39B74772B964FAF008A78B6 /* TableViewCellForTapableSection.xib in Resources */,
-				0B9B03D92BA32E730017195D /* SectionHeaderView.xib in Resources */,
 				0BBF276B2BA99F0A0082AF53 /* CategoryTableViewcell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,7 +223,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B9B03D62BA32E460017195D /* SectionHeaderView.swift in Sources */,
 				A39B74792B964FB8008A78B6 /* TableViewCellForTapableSection.swift in Sources */,
 				0B9B03D42BA095A00017195D /* TapticEngine.swift in Sources */,
 				A33EF97E2B827A45003EFB6F /* ViewController.swift in Sources */,
