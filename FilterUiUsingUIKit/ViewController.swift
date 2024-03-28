@@ -152,6 +152,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         print("Clear all Pressed")
         self.sections[CellType.price.rawValue].sectionData.maxSelectedValue = self.sections[CellType.price.rawValue].sectionData.maxValue
         self.sections[CellType.price.rawValue].sectionData.minSelectedValue = self.sections[CellType.price.rawValue].sectionData.minValue
+        self.selectedFilters.removeAll()
         for section in sections{
             switch CellType(rawValue: section.index.section.rawValue){
             case .orientation:
@@ -162,9 +163,6 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             default : break
             }
             for row in  section.index.row{
-                if  self.selectedFilters.count > 0{
-                    self.selectedFilters.remove(at: row)
-                }
                 self.sections[section.index.section.rawValue].index.row = []
             }
         }
